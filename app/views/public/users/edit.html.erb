@@ -1,7 +1,7 @@
 <h1><%= @user.name%>さんのページ</h1>
 <%= form_with model: @user, url: user_path, method: :patch do |f| %>
   <label for="inputName">ユーザー名</label>
-  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
+    <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
   <label for="inputEmail">メールアドレス</label>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   <label for="inputImage">プロフィール画像</label>

@@ -1,0 +1,9 @@
+  <h1>新規投稿</h1>
+  <%= form_with model: @post do |f| %>
+    <label for="inputTitle">タイトル</label>
+    <%=f.text_field :title %>
+    <label for="inputContent">本文</label>
+    <%= f.rich_text_area :content %>
+    <%= f.submit '投稿' %>
+  <% end %>
+  
