@@ -28,7 +28,7 @@ class Public::UsersController < ApplicationController
     @user = current_user
     @user.update(is_active: false)
     reset_session
-    flash[:notice] = "退会処理が完了いたしました。"
+    flash[:notice] = "退会処理が完了いたしました。ご利用ありがとうございました。"
     redirect_to root_path
   end
   
