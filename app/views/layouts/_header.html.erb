@@ -1,15 +1,17 @@
 
+<!--エンドユーザーログイン中-->
 <% if user_signed_in? %>
   <li>
-    <%= link_to "TOP", destroy_user_session_path, method: :delete %>
+    <%= link_to "TOP", root_path %>
   </li>
   <li>
-    <%= link_to "マイページ", destroy_user_session_path, method: :delete %>
+    <%= link_to "マイページ", user_path(current_user.id) %>
   </li>
   <li>
     <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
   </li>
 <% else %>
+<!--エンドユーザーログイン前-->
   <li>
     <%= link_to "TOP", new_user_registration_path %>
   </li>
@@ -23,4 +25,3 @@
     <%= link_to "ログイン", new_user_session_path %>
   </li>
 <% end %>
-  
