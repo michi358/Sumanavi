@@ -1,4 +1,7 @@
 
-  <%= @post.title%>
+  <h3><%= @post.title%></h3>
+  <p>ユーザー名：<%= @post.user.name %></p>
+  <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
   <%= @post.content %>
-
+  
+  <%= link_to '編集する', edit_post_path %>

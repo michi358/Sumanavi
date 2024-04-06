@@ -8,3 +8,8 @@
     <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
   <%= f.submit "変更を保存する" %>
 <% end %>
+
+<!--退会-->
+<% if @user == current_user %>
+    <%= link_to '退会する場合はこちら', unsubscribe_users_path %>
+<% end %>
