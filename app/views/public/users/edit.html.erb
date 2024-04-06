@@ -1,5 +1,6 @@
 <h1><%= @user.name%>さんのページ</h1>
 <%= form_with model: @user, url: user_path, method: :patch do |f| %>
+<%= render 'layouts/errors_messages', model: f.object %>
   <label for="inputName">ユーザー名</label>
     <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
   <label for="inputEmail">メールアドレス</label>
@@ -9,7 +10,7 @@
   <%= f.submit "変更を保存する" %>
 <% end %>
 
-<!--退会-->
+<!--退会リンク-->
 <% if @user == current_user %>
     <%= link_to '退会する場合はこちら', unsubscribe_users_path %>
 <% end %>
