@@ -1,2 +1,15 @@
 <h1>TOPページ</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<h3>新着記事</h3>
+  <table>
+    <% @posts.order(created_at: :desc). limit(5).each do |post| %>
+    <tr>  
+      <td><%= image_tag post.user.get_profile_image(30,30) %></td>
+      <td><%= link_to post.user.name, user_path(post.user_id) %></td>
+      <td><%= link_to post.title, post_path(post.id) %></td>
+    <% end %>
+    </tr>
+  </table>
+
+<%= link_to "すべての記事を見る>", posts_path %>
+
+<!--お気に入り機能を追加した時に、人気記事表示を追加する-->

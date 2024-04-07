@@ -1,7 +1,17 @@
 <h1><%= @user.name%>さんのページ</h1>
 <%= image_tag @user.get_profile_image(100,100) %>
-<h2>投稿一覧</h2>
-<%= link_to '登録情報編集はこちら',edit_user_path(@user.id) %>
 <% if @user == current_user %>
-    <%= link_to '退会する場合はこちら', unsubscribe_users_path %>
-<% end %>
+  <%= link_to '登録情報編集はこちら',edit_user_path(@user.id) %>
+<% end%>
+
+<h2>投稿一覧</h2>
+  <table>
+    <% @posts.each do |post| %>
+    <tr>  
+      <td><%= link_to post.title, post_path(post.id) %></td>
+      <td><%= l post.created_at, format: :time %></td>
+    <% end %>
+    </tr>
+  </table>
+
+

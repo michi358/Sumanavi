@@ -2,6 +2,7 @@ class Public::UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts
   end
   
   def edit
@@ -14,7 +15,7 @@ class Public::UsersController < ApplicationController
       flash[:notice] = "編集が完了しました。"
       redirect_to user_path(@user.id)
     else
-      flash.now[:notice] = "編集に失敗しました。"
+      flash.now[:alert] = "編集に失敗しました。"
       render :edit
     end
       

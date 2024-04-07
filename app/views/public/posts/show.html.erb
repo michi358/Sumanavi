@@ -1,2 +1,10 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+
+  <h3><%= @post.title%></h3>
+  <p>ユーザー名：<%= @post.user.name %></p>
+  <p>投稿日：<%= l @post.created_at, format: :time %></p>
+  <%= @post.content %>
+  
+  <% if @post.user_id == current_user.id %>
+  <%= link_to '編集する', edit_post_path %>
+  <%= link_to '削除する', post_path, method: :delete %>
+  <% end %>
