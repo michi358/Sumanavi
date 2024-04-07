@@ -1,5 +1,7 @@
 class Public::PostsController < ApplicationController
-
+  
+  before_action :is_matching_login_user, only: [:edit, :update]
+  
   def index
     @posts = Post.all
   end
@@ -42,12 +44,22 @@ class Public::PostsController < ApplicationController
   end
 
   def destroy
+    post = Post.find(params[:id])
+    post.destroy
+    redirect_to user_path(current_user.id)
   end
 
   private
 
   def post_params
     params.require(:post).permit(:title, :content)
+  end
+  
+  def is_matching_login_user
+    post = Post.find(params[:id])
+    unless post.user_id == current_user.id
+      redirect_to posts_path
+    end
   end
 
 end
