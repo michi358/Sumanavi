@@ -1,6 +1,6 @@
 <h1><%= @user.name%>さんのページ</h1>
 <%= image_tag @user.get_profile_image(100,100) %>
-<% if @user == current_user %>
+<% if @user == current_user && !@user.guest_user? %>
   <%= link_to '登録情報編集はこちら',edit_user_path(@user.id) %>
 <% end%>
 

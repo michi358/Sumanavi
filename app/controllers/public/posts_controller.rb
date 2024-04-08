@@ -54,7 +54,7 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :content)
   end
-  
+  # アクセス制限をするため（before_actionで使うため)
   def is_matching_login_user
     post = Post.find(params[:id])
     unless post.user_id == current_user.id
