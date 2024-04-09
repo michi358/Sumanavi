@@ -1,69 +1,83 @@
+<%= stylesheet_link_tag "application" %>
+
 <header class="shadow-sm">
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="w-100 d-flex flex-wrap justify-content-between">
-      <a class="navbar-brand p-1" href="/"><%= image_tag('logo.png') %></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end mr-2" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <%= link_to root_path, class: "nav-link" do %>
-                <i class="fa-solid fa-house"></i>
-                <span>TOP</span>
-                <% end %>
-              </li>
-              <!--ユーザーログイン中-->
-              <% if user_signed_in? %>
-                <li class="nav-item">
-                  <%= link_to user_path(current_user.id), class: "nav-link" do %>
-                  <i class="fa-solid fa-user"></i>
-                  <span>マイページ</span>
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to new_post_path, class: "nav-link" do %>
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  <span>新規投稿</span>
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to destroy_user_session_path, method: :delete , class: "nav-link" do %>
-                  <i class="fa-solid fa-right-from-bracket"></i>
-                  <span>ログアウト</span>
-                  <% end %>
-                </li>
-              <% else %>
-              <!--ユーザーログイン前-->
-                <li class="nav-item">
-                  <%= link_to about_path, method: :delete , class: "nav-link" do %>
-                  <i class="fa-solid fa-paperclip"></i>
-                  <span>サービス</span>
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to new_user_registration_path, class: "nav-link" do %>
-                  <i class="fa-solid fa-user-plus"></i>
-                  <span>新規登録</span>
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to new_user_session_path, class: "nav-link" do %>
-                  <i class="fa-solid fa-right-to-bracket"></i>
-                  <span>ログイン</span>
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to users_guest_sign_in_path, method: :post, class: "nav-link" do %>
-                  <i class="fa-solid fa-hand-point-right"></i>
-                  <span>ゲストログイン（閲覧用）</span>
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
+      <a class="navbar-brand m-2" href="/"><%= image_tag('logo2.png') %></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+        <!--2段にするためのクラス-->
+        <!--<div class="collapse navbar-collapse flex-column" id="navbarSupportedContent">-->
+        <% if user_signed_in? %>
+          <div class="mx-5">
+            ようこそ、<%= current_user.name %>さん!
           </div>
-    </div>    
+        <% end %>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <%= link_to root_path, class: "nav-link" do %>
+            <i class="fa-solid fa-house"></i>
+            <span>TOP</span>
+            <% end %>
+          </li>
+          <!--ユーザーログイン中-->
+          <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to user_path(current_user.id), class: "nav-link" do %>
+            <i class="fa-solid fa-user"></i>
+            <span>マイページ</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to new_post_path, class: "nav-link" do %>
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span>新規投稿</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to destroy_user_session_path, method: :delete , class: "nav-link" do %>
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>ログアウト</span>
+            <% end %>
+          </li>
+        <% else %>
+        <!--ユーザーログイン前-->
+          <li class="nav-item">
+            <%= link_to about_path, class: "nav-link" do %>
+            <i class="fa-solid fa-paperclip"></i>
+            <span>サービス</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to new_user_registration_path, class: "nav-link" do %>
+            <i class="fa-solid fa-user-plus"></i>
+            <span>新規登録</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to new_user_session_path, class: "nav-link" do %>
+            <i class="fa-solid fa-right-to-bracket"></i>
+            <span>ログイン</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to users_guest_sign_in_path, method: :post, class: "nav-link" do %>
+            <i class="fa-solid fa-hand-point-right"></i>
+            <span>ゲストログイン（閲覧用）</span>
+            <% end %>
+          </li>
+        <% end %>
+        </ul>
+          <!-- 検索窓 -->
+          <form class="form-inline" >
+            <input class="form-control" type="search" placeholder="検索" aria-label="検索">
+            <button class="btn btn-outline-light btn btn-secondary my-2 my-sm-0" type="submit">検索</button>
+          </form>
+      </div>
+    </div>
   </nav>
-      
+
 </header>

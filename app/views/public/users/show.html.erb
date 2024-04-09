@@ -1,13 +1,18 @@
-<h1><%= @user.name%>さんのページ</h1>
-<%= image_tag @user.get_profile_image(100,100) %>
-<% if @user == current_user && !@user.guest_user? %>
-  <%= link_to '登録情報編集はこちら',edit_user_path(@user.id) %>
-<% end%>
+<%= stylesheet_link_tag "application" %>
 
-<h2>投稿一覧</h2>
+<div class="container">
+  <div class="row shadow-lg my-3 p-3 rounded" style="background-color:white">
+    <h3><%= @user.name%>さんのページ</h3>
+    <%= image_tag @user.get_profile_image(100,100) %>
+    <% if @user == current_user && !@user.guest_user? %>
+      <a class="nav-link active"  href="<%= edit_user_path(@user.id) %>" aria-selected="true">登録情報の編集はこちら</a>
+    <% end %>
+
+
+<h3>投稿一覧</h3>
   <table>
     <% @posts.each do |post| %>
-    <tr>  
+    <tr>
       <td><%= link_to post.title, post_path(post.id) %></td>
       <td><%= l post.created_at, format: :time %></td>
     <% end %>
