@@ -8,7 +8,7 @@
       <p>投稿日：<%= l @post.created_at, format: :time %></p>
       <p><%= @post.content %></p>
     </div>
-    <% if @post.user_id == current_user.id %>
+    <% if user_signed_in? && @post.user_id == current_user.id %>
       <div class="row col-12 justify-content-center">
         
           <%= link_to '編集する', edit_post_path, class: 'btn btn-primary mr-2' %>
