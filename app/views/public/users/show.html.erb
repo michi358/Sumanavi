@@ -1,0 +1,31 @@
+<%= stylesheet_link_tag "application" %>
+
+
+<div class="container">
+  <h3 class="m-3"><%= @user.name%>さんのページ</h3>
+  <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
+    <table class="table text-center table-borderless">
+      <tr><td><%= image_tag @user.get_profile_image(100,100) %></td></tr>
+      <tr><td><%= @user.name %></td></tr>
+      <tr>
+        <td>
+          <% if @user == current_user && !@user.guest_user? %>
+          <%= link_to "登録情報の編集はこちら", edit_user_path(@user.id), class:"btn btn-outline-info" %>
+          <% end %>
+        </td>
+       </tr>
+    </table>
+  </div>
+
+  <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
+    <h3>投稿一覧</h3>
+    <table class="table text-center table-borderless">
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= link_to post.title, post_path(post.id) %></td>
+        <td><%= l post.created_at, format: :time %></td>
+      <% end %>
+      </tr>
+    </table>
+  </div>
+

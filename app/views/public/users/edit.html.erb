@@ -1,0 +1,39 @@
+<%= stylesheet_link_tag "application" %>
+
+<div class="container">
+  <h3 class="m-3 text-center"><%= @user.name %>さんの登録情報編集</h3>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="shadow-lg my-3 p-3 rounded" style="background-color:white">
+        <%= form_with model: @user, url: user_path, method: :patch do |f| %>
+          <%= render 'layouts/errors_messages', model: f.object %>
+          <div class="form-group">
+            <%= f.label :name, "ユーザー名" %>
+            <%= f.text_field :name, autofocus: true, class: "form-control", id: "inputName", placeholder: "名前" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :email, "メールアドレス" %>
+            <%= f.email_field :email, autofocus: true, class: "form-control", id: "inputEmail", autocomplete: "email" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :profile_image, "プロフィール画像" %>
+            <%= f.file_field :profile_image, class: "form-control-file", id: "inputImage", placeholder: "プロフィール画像", accept: "image/*" %>
+          </div>
+          <div class="form-group text-center">
+            <%= f.submit "変更を保存する", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+        
+        <!-- 退会リンク -->
+        <div class="row justify-content-center">
+          <div class="col-md-6 text-center">
+            <% if @user == current_user %>
+              <%= link_to '退会する場合はこちら', unsubscribe_users_path, class: "btn btn-danger btn-block" %>
+            <% end %>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

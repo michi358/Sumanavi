@@ -1,0 +1,25 @@
+  <%= stylesheet_link_tag "application" %>
+  
+  <div class="container">
+  <h3 class="m-3">投稿一覧</h3>
+  <div class="row shadow-lg my-3 p-3 rounded" style="background-color:white">
+    <div class="col my-2 mx-5">
+      <table class="table table-sm mx-auto">
+        <tr>
+          <th>投稿者</th>
+          <th>タイトル</th>
+        </tr>
+        <% @posts.each do |post| %>
+          <tr>  
+            <td>
+              <%= image_tag post.user.get_profile_image(30,30) %>
+              <%= link_to post.user.name, user_path(post.user_id) %>
+            </td>
+            <td><%= link_to post.title, post_path(post.id) %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <%= paginate @posts %>
+</div>
