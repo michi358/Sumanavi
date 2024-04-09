@@ -1,10 +1,20 @@
+<%= stylesheet_link_tag "application" %>
 
-  <h3><%= @post.title%></h3>
-  <p>ユーザー名：<%= @post.user.name %></p>
-  <p>投稿日：<%= l @post.created_at, format: :time %></p>
-  <%= @post.content %>
-  
-  <% if @post.user_id == current_user.id %>
-  <%= link_to '編集する', edit_post_path %>
-  <%= link_to '削除する', post_path, method: :delete %>
-  <% end %>
+<div class="container">
+  <div class="row shadow-lg my-3 p-3 rounded" style="background-color:white">
+    <div class="col">
+      <h3><%= @post.title %></h3>
+      <p>ユーザー名：<%= @post.user.name %></p>
+      <p>投稿日：<%= l @post.created_at, format: :time %></p>
+      <p><%= @post.content %></p>
+    </div>
+    <% if @post.user_id == current_user.id %>
+      <div class="row col-12 justify-content-center">
+        
+          <%= link_to '編集する', edit_post_path, class: 'btn btn-primary mr-2' %>
+          <%= link_to '削除する', post_path, method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+        
+      </div>
+    <% end %>
+  </div>
+</div>

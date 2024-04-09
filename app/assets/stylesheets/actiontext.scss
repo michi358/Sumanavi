@@ -34,3 +34,8 @@
     }
   }
 }
+.trix-content img {
+  display: block !important;
+  margin-left: 0 !important; /* 左寄せ */
+  margin-right: auto !important;
+}
