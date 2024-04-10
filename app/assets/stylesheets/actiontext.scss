@@ -39,3 +39,7 @@
   margin-left: 0 !important; /* 左寄せ */
   margin-right: auto !important;
 }
+.trix-content img {
+  max-width: 300px; /* 最大幅を指定 */
+  height: auto; /* 高さを自動調整してアスペクト比を保持 */
+}

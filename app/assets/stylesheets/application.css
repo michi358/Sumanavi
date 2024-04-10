@@ -38,3 +38,8 @@ footer{
     border-width: 8px;
     content: "";
 }
+
+.about_image{
+  width: 100vw; /* 最大幅を指定 */
+  height: auto;
+}
