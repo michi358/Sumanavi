@@ -23,7 +23,7 @@
             <span>TOP</span>
             <% end %>
           </li>
-          <!--ユーザーログイン中-->
+          <!--ユーザーがログイン中-->
           <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to user_path(current_user.id), class: "nav-link" do %>
@@ -43,8 +43,16 @@
             <span>ログアウト</span>
             <% end %>
           </li>
+          <!--管理者がログイン中-->
+        <% elsif admin_signed_in? %>  
+          <li class="nav-item">
+            <%= link_to destroy_user_session_path, method: :delete , class: "nav-link" do %>
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>ログアウト</span>
+            <% end %>
+          </li>
         <% else %>
-        <!--ユーザーログイン前-->
+        <!--ログイン前-->
           <li class="nav-item">
             <%= link_to about_path, class: "nav-link" do %>
             <i class="fa-solid fa-paperclip"></i>
