@@ -1,0 +1,45 @@
+h2, .form-group,table,h4,p,h3{
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+header{
+  background-color: #fff799;
+}
+body {
+  background-color: #f5f6f6;;
+  
+}
+footer{
+  background-color: #fff799;
+}
+
+.balloon {
+    position: relative;
+    padding: 1rem 1rem 1rem 1.5rem;
+    border-radius: 30px;
+    background-color: #82cddd;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    
+}
+
+.balloon:before {
+    position: absolute;
+    top: 100%;
+    left: 40px;
+    height: 0;
+    width: 0;
+    border-style: solid;
+    border-color: transparent;
+    border-top-color: #82cddd;
+    border-width: 8px;
+    content: "";
+}
+
+.about_image{
+  width: 100vw; /* 最大幅を指定 */
+  height: auto;
+}
