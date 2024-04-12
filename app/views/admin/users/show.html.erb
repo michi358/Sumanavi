@@ -1,0 +1,44 @@
+<div class="container">
+  <h3 class="m-3"><%= @user.name %>さんのページ</h3>
+  <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
+    <div class="col-md-8 text-center">
+      <table class="table table-borderless">
+        <h5>登録情報</h5>
+        <tr>
+          <td colspan="2" class="text-center"><%= image_tag @user.get_profile_image(100,100), class: "img-thumbnail" %></td>
+        <tr>
+          <td>ユーザー名</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス名</td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td>登録日</td>
+          <td><%= l @user.created_at, format: :time %></td>
+        </tr>
+        <tr>
+          <td>ユーザーステータス</td>
+          <td>
+            <%= form_with model: @user, url: admin_user_path, method: :patch, local: true, data: { confirm: "本当に変更しますか？" } do |f| %>
+              <div class="row">
+                <div class="col-6 d-flex justify-content-center align-items-center">
+                  <%= f.radio_button :is_active, true, class: "mr-2" %>
+                  <%= f.label :is_active, "有効", class: "mb-0" %>
+                </div>
+                <div class="col-6 d-flex justify-content-center align-items-center">
+                  <%= f.radio_button :is_active, false, class: "mr-2" %>
+                  <%= f.label :is_active, "退会", class: "mb-0" %>
+                </div>
+              </div>
+              <div class="text-center my-3">
+                <%= f.submit 'ステータスの変更', class: "btn btn-success" %>
+              </div>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

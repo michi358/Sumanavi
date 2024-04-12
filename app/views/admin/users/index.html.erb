@@ -1,1 +1,21 @@
-<h1>管理者ユーザー一覧</h1>
+<h3>ユーザー一覧</h3>
+<table>
+  <tr>
+    <th>ユーザー名</th>
+    <th>メールアドレス</th>
+    <th>ユーザーステータス</th>
+  </tr>
+  <% @users.each do |user|%>
+  <tr>
+    <td><%= link_to user.name, admin_user_path(user.id), method: :get %></td>
+    <td><%= user.email %></td>
+    <td>
+      <% if user.is_active == true %>
+        <p class="text-success"><b>有効</b></p>
+      <% else %>
+        <p class="text-black-50"><b>退会</b></p>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>
