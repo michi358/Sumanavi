@@ -1,0 +1,35 @@
+<%= stylesheet_link_tag "admin_application" %>
+
+<div class="container">
+  
+  <h3 class="my-3">管理メニュー</h3>
+  
+  <div class="row justify-content-center">
+    <div class="col-4 mb-3"> <!-- 1つ目のボックス -->
+      <%= link_to admin_users_path, class: "card text-center text-decoration-none" do %> <!-- ボックスのスタイリング -->
+        <div class="card-body">
+          <i class="fa-solid fa-users"></i>
+          <p class="card-text">ユーザー管理</p>
+        </div>
+      <% end %>
+    </div>
+  
+    <div class="col-4 mb-3"> <!-- 2つ目のボックス -->
+      <%= link_to admin_posts_path, class: "card text-center text-decoration-none" do %>
+        <div class="card-body">
+          <i class="fa-regular fa-newspaper"></i>
+          <p class="card-text">投稿記事管理</p>
+        </div>
+      <% end %>
+    </div>
+  
+    <div class="col-4 mb-3"> <!-- 3つ目のボックス -->
+      <%= link_to admin_posts_path, class: "card text-center text-decoration-none" do %>
+        <div class="card-body">
+          <i class="fa-solid fa-layer-group"></i>
+          <p class="card-text">ジャンル管理</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
