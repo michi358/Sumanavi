@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get '/about' => "homes#about", as: 'about'
-    resources :posts
+    resources :posts do
+      resources :post_comments, only: [:create, :destroy]
+    end
     resources :users, only:[:show, :edit, :update] do
       collection do
         get :unsubscribe
@@ -34,7 +36,9 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "homes#top"
     resources :users, only: [:index, :show, :update]
-    resources :posts, only: [:index, :show, :destroy]
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :post_comments, only: [:create, :destroy]
+    end
   end
 
 end
