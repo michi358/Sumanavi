@@ -7,35 +7,53 @@
       <p>ユーザー名：<%= @post.user.name %></p>
       <p>投稿日：<%= l @post.created_at, format: :time %></p>
       <p><%= @post.content %></p>
-      
+
       <p><i class="fa-solid fa-comment"></i><%= @post.post_comments.count %></p>
     </div>
   </div>
-    
+
   <% if user_signed_in? && @post.user_id == current_user.id %>
     <div class="row col-12 justify-content-center">
       <%= link_to '編集する', edit_post_path, class: 'btn btn-primary mr-2' %>
       <%= link_to '削除する', post_path, method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
     </div>
   <% end %>
-  
 
-    <!--コメントフォーム-->
-  <div class="col mt-2">
-    <%= form_with model: [@post, @post_comment], local: true do |f| %>
-      <div class="form-group d-flex align-items-end">
-        <%= f.text_area :comment, rows: '3', class: 'form-control flex-grow-1 mr-2', placeholder: "コメントはこちら" %>
-        <%= f.submit "送信する", class: 'btn btn-primary align-self-end' %>
-      </div>
-    <% end %>
+
+  <!--コメントフォーム/表示-->
+  <div class="row shadow-lg my-3 p-3 rounded" style="background-color:white">
+    <div class="col-12">
+      <h5>コメント</h5>
+      <hr class="my-3">
+    </div>
+    <!-- コメント一覧 -->
+    <div class="col-12 mb-3">
+      <% @post.post_comments.each do |post_comment| %>
+        <p class="d-flex align-items-center p-3 mb-2">
+          <%= image_tag post_comment.user.get_profile_image(50, 50), class: 'mr-2 rounded-circle' %>
+          <strong class="mr-2"><%= post_comment.user.name %></strong>
+          <span class="text-muted mr-2"><%= post_comment.created_at.strftime('%Y/%m/%d') %></span>
+          <% if user_signed_in? && @post.user_id == current_user.id %>
+            <span><%= link_to "削除",post_post_comment_path(post_comment.id), method: :delete %></span>
+          <% end %>
+        </p>
+        <p class="my-2 mx-5"><%= post_comment.comment %></p>
+        <hr class="my-3">
+      <% end %>
+    </div>
+    <!-- コメント投稿フォーム -->
+    <div class="col-12">
+      <% if user_signed_in? %>
+        <h5>コメントを投稿</h5>
+        <%= form_with model: [@post, @post_comment], local: true do |f| %>
+          <div class="form-group d-flex align-items-end">
+            <%= f.text_area :comment, rows: '3', class: 'form-control flex-grow-1 mr-2', placeholder: "コメントはこちら" %>
+            <%= f.submit "送信する", class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      <% end %>
+
+    </div>
   </div>
-  
-  <!--コメントの表示-->
-  <div>
-  <% @post.post_comments.each do |post_comment| %>
-    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
-    <%= post_comment.user.name %>
-    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-  <% end %>
-  </div>
+
 </div>
