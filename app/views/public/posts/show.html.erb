@@ -6,6 +6,7 @@
       <h3><%= @post.title %></h3>
       <p>ユーザー名：<%= @post.user.name %></p>
       <p>投稿日：<%= l @post.created_at, format: :time %></p>
+      <p>ジャンル：<%= @post.genre.name %></p>
       <p><%= @post.content %></p>
 
       <p><i class="fa-solid fa-comment"></i><%= @post.post_comments.count %></p>

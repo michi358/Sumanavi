@@ -18,7 +18,7 @@ class Public::PostsController < ApplicationController
       flash[:notice] = "投稿が成功しました。"
       redirect_to post_path(@post.id)
     else
-      flash.now[:alert] = "編集に失敗しました。"
+      flash.now[:alert] = "投稿に失敗しました。"
       render :new
     end
 
@@ -53,7 +53,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :genre_id)
   end
   # アクセス制限をするため（before_actionで使うため)
   def is_matching_login_user
