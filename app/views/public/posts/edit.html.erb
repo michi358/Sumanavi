@@ -8,11 +8,11 @@
         <%= render 'layouts/errors_messages', model: f.object %>
         <div class="form-group text-left">
           <label for="inputTitle">タイトル</label>
-          <%=f.text_field :title %>
+          <%=f.text_field :title, class: "form-control" %>
         </div>
         <div class="form-group text-left">
           <label for="inputContent">本文</label>
-          <%= f.rich_text_area :content %>
+          <%= f.rich_text_area :content, class: "form-control", style: "height: auto; overflow-y: auto;" %>
         </div>
         <%= f.submit '編集', class: "btn btn-primary" %>
       <% end %>

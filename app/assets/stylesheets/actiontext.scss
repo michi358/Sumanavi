@@ -43,3 +43,15 @@
   max-width: 300px; /* 最大幅を指定 */
   height: auto; /* 高さを自動調整してアスペクト比を保持 */
 }
+trix-toolbar {
+  .trix-button-row {
+    flex-wrap: wrap;
+    justify-content: start;
+  }
+  .trix-button-group:not(:first-child) {
+    margin-left: 0;
+  }
+  .trix-button-group {
+    margin-right: 1.5vw;
+  }
+}

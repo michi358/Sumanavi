@@ -6,7 +6,7 @@
       <h3 class="mr-4 mb-0">最新の記事</h3>
       <p class="align-self-end mb-0">新着記事をお届け</p>
     </div>
-    
+
     <div class="col my-2 mx-5">
       <table class="table table-sm">
         <tr>
@@ -23,10 +23,30 @@
           <% end %>
           </tr>
       </table>
-      <div class="row mx-aout justify-content-end">
+      <div class="row justify-content-end">
         <%= link_to "すべての記事を見る>", posts_path %>
       </div>
     </div>
   </div>
+
+    <div class="row justify-content-between">
+        <div class="col shadow-lg my-3 p-3 mr-1 rounded" style="background-color:white">
+          <div class="balloon d-flex align-items-end justify-content-center m-2">
+            <h5 class="mr-4 mb-0">カテゴリー</h5>
+          </div>
+          <div class="list-group ml-5 my-3">
+          <% @genres.each do |genre| %>
+          <%= link_to genre.name, genre_search_path(genre_id: genre.id), method: :get %>
+          <% end %>
+          </div>
+          
+        </div>
+        <div class="col shadow-lg my-3 p-3 rounded" style="background-color:white">
+          <p>2</p>
+        </div>
+
+    </div>
 </div>
+
+
 <!--お気に入り機能を追加した時に、人気記事表示を追加する-->

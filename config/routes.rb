@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'posts/index'
-    get 'posts/show'
-  end
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
@@ -13,10 +9,12 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+  
 
   scope module: :public do
     root to: 'homes#top'
     get '/about' => "homes#about", as: 'about'
+    get '/genre/search' => 'searches#genre_search'
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
     end
@@ -35,10 +33,13 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "homes#top"
+    get 'genre/search' => 'searches#genre_search'
     resources :users, only: [:index, :show, :update]
     resources :posts, only: [:index, :show, :destroy] do
       resources :post_comments, only: [:destroy]
     end
+    resources :genres, only: [:index, :create, :update]
+    # 投稿記事とgenreをアソシエーションしているため、エラー回避のためにdestroyは追加しない
   end
 
 end

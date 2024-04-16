@@ -8,6 +8,7 @@
         <tr>
           <th colspan="2">投稿者</th>
           <th>タイトル</th>
+          <th>カテゴリー</th>
           <th>投稿日時</th>
         </tr>
         <% @posts.each do |post| %>
@@ -15,7 +16,8 @@
             <td class="pr-0"><%= image_tag post.user.get_profile_image(30,30) %></td>
             <td class="pl-0"><%= link_to post.user.name, user_path(post.user_id) %></td>
             <td><%= link_to post.title, admin_post_path(post.id) %></td>
-            <td><%= l post.created_at, format: :time %></td>
+            <td><%= link_to post.genre.name,admin_genre_search_path(genre_id: post.genre_id), method: :get %></td>
+            <td><%= l post.created_at, format: :short %></td>
           </tr>
         <% end %>
       </table>
