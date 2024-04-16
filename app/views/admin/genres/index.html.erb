@@ -1,10 +1,10 @@
 <%= stylesheet_link_tag "admin_application" %>
 
 <div class="container">
-  <h3 class="m-3 text-center">ジャンル管理</h3>
+  <h3 class="m-3 text-center">カテゴリー管理</h3>
   <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
     <div class="col-md-8 text-center">
-      <h5><b>ジャンル一覧</b></h5>
+      <h5><b>カテゴリー一覧</b></h5>
       <% @genres.each do |genre| %>
         <div class="mb-3">
           <%= form_with model: genre, url: admin_genre_path(genre), method: :patch, local: true do |f| %>
@@ -21,7 +21,7 @@
       <div class="mb-3">
         <%= form_with model: @genre, url: admin_genres_path, method: :post, local: true do |f| %>
           <div class="input-group justify-content-center">
-            <%= f.text_field :name, class: "form-control col-md-6", placeholder: "ジャンルの追加はこちら" %>
+            <%= f.text_field :name, class: "form-control col-md-6", placeholder: "カテゴリーの追加はこちら" %>
             <%= f.submit "追加", class: "btn btn-primary ml-2" %>
           </div>
         <% end %>
