@@ -8,7 +8,15 @@
       <p>投稿日：<%= l @post.created_at, format: :time %></p>
       <p>カテゴリー：<%= @post.genre.name %></p>
       <p><%= @post.content %></p>
-      <p><i class="fa-solid fa-comment"></i><%= @post.post_comments.count %></p>
+      <!--コメント数、いいねボタン-->
+      <div class="row d-flex align-items-start">
+        <div class="col-1">
+          <p><i class="fa-solid fa-comment"></i><%= @post.post_comments.count %></p>
+        </div>
+        <div class="col-1">
+          <p><i class="fa-solid fa-thumbs-up"></i><%= @post.favorites.count %></p>
+        </div>
+      </div>
     </div>
   </div>
 
