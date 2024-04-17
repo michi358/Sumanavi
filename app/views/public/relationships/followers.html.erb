@@ -1,0 +1,6 @@
+<%= stylesheet_link_tag "application" %>
+
+<div class="container">
+  <h3 class="m-3"><%= @user.name %>さんのフォロワー一覧</h3>
+  <%= render 'index', users: @users %>
+</div>

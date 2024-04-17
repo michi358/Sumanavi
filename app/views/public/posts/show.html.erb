@@ -4,12 +4,15 @@
   <div class="row shadow-lg my-3 p-3 rounded" style="background-color:white">
     <div class="col">
       <h3><%= @post.title %></h3>
-      <p>ユーザー名：<%= @post.user.name %></p>
+      <p>
+        ユーザー名：<%= @post.user.name %>
+        <%= render "public/relationships/btn", user: @user, options: { button_size: "sm", class: "" } %>
+      </p>
       <p>投稿日：<%= l @post.created_at, format: :time %></p>
       <p>カテゴリー：<%= @post.genre.name %></p>
       <hr class="my-3">
       <p><%= @post.content %></p>
-      
+
      <!--コメント数、いいねボタン-->
       <div class="row d-flex align-items-start">
         <div class="col-1">

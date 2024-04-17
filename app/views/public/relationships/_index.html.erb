@@ -1,0 +1,27 @@
+<div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
+    <div class="col mx-auto text-center">
+      <% if users.exists? %>
+        <table class="table  table text-center table-hover">
+          <tr>
+            <th>ユーザー名</th>
+            <th>フォロワー数</th>
+            <th>フォロー数</th>
+            <th>投稿数</th>
+            <th></th>
+          </tr>
+          <% users.each do |user| %>
+            <tr>
+              <td><%= image_tag user.get_profile_image(30,30) %><%= link_to user.name, user_path(user) %></td>
+              <td><%= user.followers.count %></td>
+              <td><%= user.followings.count %></td>
+              <td><%= user.posts.count %></td>
+              <td><%= render "public/relationships/btn", user: user, options: { button_size: "sm", class: "" } %></td>
+            </tr>
+          <% end %>
+        </table>
+      <% else %>
+        <p>ユーザーはいません</p>
+      <% end %>
+    </div>
+  </div>
+  <%= paginate users %>

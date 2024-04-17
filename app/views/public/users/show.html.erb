@@ -7,6 +7,13 @@
     <table class="table text-center table-borderless">
       <tr><td><%= image_tag @user.get_profile_image(100,100) %></td></tr>
       <tr><td><%= @user.name %></td></tr>
+      <tr><td>フォロー中：<%= link_to @user.followings.count, user_followings_path(@user) %></td></tr>
+      <tr><td>フォロワー：<%= link_to @user.followers.count, user_followers_path(@user) %></td></tr>
+      <tr>
+        <td>
+          <%= render "public/relationships/btn", user: @user, options: { class: ""} %>
+        </td>
+      </tr>
       <tr>
         <td>
           <% if @user == current_user && !@user.guest_user? %>
