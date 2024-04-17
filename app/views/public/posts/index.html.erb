@@ -10,7 +10,7 @@
             <th class="col-3">タイトル</th>
             <th class="col-2">カテゴリー</th>
             <th class="col-2">投稿日</th>
-            <th class="col-2">コメント/お気に入り登録数</th>
+            <th class="col-2">コメント/いいね</th>
           </tr>
           <% @posts.each do |post| %>
             <tr>
@@ -20,7 +20,7 @@
               <td><%= l post.created_at, format: :short %></td>
               <td>
                 <i class="fa-solid fa-comment"></i><%= post.post_comments.count %>/
-                <i class="fa-solid fa-bookmark"></i>
+                <i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %>
               </td>
             </tr>
           <% end %>

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get '/genre/search' => 'searches#genre_search'
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
+      resource :favorite, only: [:create, :destroy]
     end
     resources :users, only:[:show, :edit, :update] do
       collection do

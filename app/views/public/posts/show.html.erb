@@ -7,9 +7,34 @@
       <p>ユーザー名：<%= @post.user.name %></p>
       <p>投稿日：<%= l @post.created_at, format: :time %></p>
       <p>カテゴリー：<%= @post.genre.name %></p>
+      <hr class="my-3">
       <p><%= @post.content %></p>
-
-      <p><i class="fa-solid fa-comment"></i><%= @post.post_comments.count %></p>
+      
+     <!--コメント数、いいねボタン-->
+      <div class="row d-flex align-items-start">
+        <div class="col-1">
+          <p><i class="fa-solid fa-comment"></i><%= @post.post_comments.count %></p>
+        </div>
+        <div class="col-1">
+          <% if user_signed_in? %>
+            <% if @post.favorited_by?(current_user) %>
+              <p>
+                <%= link_to post_favorite_path(@post), method: :delete do %>
+                  <i class="fa-solid fa-thumbs-up"></i><%= @post.favorites.count %>
+                <% end %>
+              </p>
+            <% else %>
+              <p>
+                <%= link_to post_favorite_path(@post), method: :post do %>
+                  <i class="fa-regular fa-thumbs-up"></i><%= @post.favorites.count %>
+                <% end %>
+              </p>
+            <% end %>
+          <% else %>
+            <p><i class="fa-solid fa-thumbs-up"></i><%= @post.favorites.count %></p>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -23,7 +48,7 @@
 
   <!--コメントフォーム/表示-->
   <div class="row shadow-lg my-3 p-3 rounded" style="background-color:white">
-    <div class="col-12">
+    <div class="col-12" id="1">
       <h5>コメント</h5>
       <hr class="my-3">
     </div>
