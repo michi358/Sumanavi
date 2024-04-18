@@ -9,10 +9,14 @@
         <%= render "public/relationships/btn", user: @user, options: { button_size: "sm", class: "" } %>
       </p>
       <p>投稿日：<%= l @post.created_at, format: :time %></p>
-      <p>カテゴリー：<%= @post.genre.name %></p>
+      <p>カテゴリー：<%= link_to @post.genre.name, genre_search_path(genre_id: @post.genre.id), method: :get %></p>
       <hr class="my-3">
       <p><%= @post.content %></p>
-
+      <!-- タグリスト -->
+      <% @post_tags.each do |tag| %>
+      <i class="fa-sharp fa-solid fa-tag"></i>
+        <%= link_to tag.name,tag_search_path(tag_id: tag.id), method: :get %>
+      <% end %>
      <!--コメント数、いいねボタン-->
       <div class="row d-flex align-items-start">
         <div class="col-1">
