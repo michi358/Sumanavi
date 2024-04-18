@@ -1,7 +1,7 @@
 <div class="search_form">
   <form action="<%= search_path %>" method="get" class="form-inline">
     <%= text_field_tag :content, nil, class: 'form-control', placeholder: '検索' %>
-    <%= select_tag :model, options_for_select({"ユーザー"=>"User","記事"=>"Post"}), class: 'form-control' %>
+    <%= select_tag :model, options_for_select({"ユーザー"=>"User","記事"=>"Post","カテゴリー"=>"Genre","タグ"=>"Tag"}), class: 'form-control' %>
     
     <%= select_tag :method, options_for_select({"完全一致"=>"perfect","前方一致"=>"forward","後方一致"=>"backward","部分一致"=>"paratial"}), class: 'form-control' %>
     <button type="submit" class="btn btn-outline-light btn btn-secondary my-2 my-sm-0">検索</button>

@@ -4,33 +4,38 @@
     <h3 class="m-3">"<%= @content %>"の検索結果</h3>
     <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
       <div class="col mx-auto text-center">
-        <table class="table  table-sm text-center table-hover">
-          <% if @model == "User" %>
-            <tbody>
-              <% @users.each do |user| %>
-                <tr>
-                  <td>
-                    <%= image_tag user.get_profile_image(30,30) %>
-                    <%= user.name %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-            <%= paginate @users %>
+       <!--Userの検索結果-->
+        <% if @model == "User" %>
+          <% if @users.present? %>
+           <table class="table  table text-center table-hover table-borderless mb-0">
+              <tbody>
+                <% @users.each do |user| %>
+                  <tr>
+                    <td>
+                      <%= image_tag user.get_profile_image(30,30) %>
+                      <%= link_to user.name, user_path(user) %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+              <%= paginate @users %>
           <% else %>
-            <tbody>
-              <%= @posts.each do |user| %>
-                <tr>
-                  <td>
-                    <%= @posts.title %>
-                </tr>
-              <% end %>
-            </tbody>
-            <%= paginate @posts %>
+           <p class="mb-0">検索条件に一致する結果が見つかりません。</p>
+          <% end %>
+        <!--Postの検索結果-->
+        <% elsif @model == "Post" %>
+          <% if @posts.present? %>
+            <%= render 'admin/posts/index', posts: @posts %>
+          <% else %>
+           <p class="mb-0">検索条件に一致する結果が見つかりません。</p>
+          <% end %>
+          
+          
           <% end %>
             
          
-        </table>
+        
       </div>
     </div>
 

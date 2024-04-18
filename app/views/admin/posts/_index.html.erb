@@ -1,0 +1,42 @@
+<!--renderの時　@posts -->
+
+<table class="table  table text-center table-hover mb-0">
+  <tr>
+    <th class="col-3">投稿者</th>
+    <th class="col-3">タイトル</th>
+    <th class="col-2">カテゴリー</th>
+    <th class="col-2">投稿日</th>
+    <th class="col-2">コメント/いいね</th>
+  </tr>
+    <% if user_signed_in? %>
+      <% posts.each do |post| %>
+        <tr>
+          <td><%= image_tag post.user.get_profile_image(30,30) %><%= link_to post.user.name, user_path(post.user_id) %></td>
+          <td><%= link_to post.title, post_path(post.id) %></td>
+          <td><%= link_to post.genre.name,genre_search_path(genre_id: post.genre_id), method: :get %></td>
+          <td><%= l post.created_at, format: :short %></td>
+          <td>
+            <i class="fa-solid fa-comment"></i><%= post.post_comments.count %>/
+            <i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %>
+          </td>
+        </tr>
+      <% end %>
+    <!--adminがログインしている時-->
+    <% else %>
+      <% posts.each do |post| %>
+        <tr>
+          <td><%= image_tag post.user.get_profile_image(30,30) %><%= link_to post.user.name, admin_user_path(post.user_id) %></td>
+          <td><%= link_to post.title, admin_post_path(post.id) %></td>
+          <td><%= link_to post.genre.name,admin_genre_search_path(genre_id: post.genre_id), method: :get %></td>
+          <td><%= l post.created_at, format: :short %></td>
+          <td>
+            <i class="fa-solid fa-comment"></i><%= post.post_comments.count %>/
+            <i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+</table>
+<div class="row col-12 justify-content-center">
+  <%= paginate posts %>
+</div>

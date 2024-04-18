@@ -39,7 +39,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "homes#top"
-    get 'genre/search' => 'searches#genre_search'
+    get "search" => "searches#search"
+    get '/genre/search' => 'searches#genre_search'
+    get "/tag/search" => "searches#tag_search"
     resources :users, only: [:index, :show, :update]
     resources :posts, only: [:index, :show, :destroy] do
       resources :post_comments, only: [:destroy]

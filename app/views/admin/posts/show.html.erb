@@ -7,7 +7,14 @@
       <p>ユーザー名：<%= @post.user.name %></p>
       <p>投稿日：<%= l @post.created_at, format: :time %></p>
       <p>カテゴリー：<%= @post.genre.name %></p>
+      <hr class="my-3">
       <p><%= @post.content %></p>
+      <!-- タグリスト -->
+      <% @post_tags.each do |tag| %>
+      <i class="fa-sharp fa-solid fa-tag"></i>
+        <%= link_to tag.name,tag_search_path(tag_id: tag.id), method: :get %>
+      <% end %>
+      
       <!--コメント数、いいねボタン-->
       <div class="row d-flex align-items-start">
         <div class="col-1">
@@ -15,7 +22,7 @@
         </div>
         <div class="col-1">
           <p><i class="fa-solid fa-thumbs-up"></i><%= @post.favorites.count %></p>
-        </div>
+        </div> 
       </div>
     </div>
   </div>
@@ -23,6 +30,7 @@
   <div class="row col-12 justify-content-center">
     <%= link_to '削除する', admin_post_path, method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
   </div>
+
 
   <!--コメントフォーム/表示-->
   <div class="row shadow-lg my-3 p-3 rounded" style="background-color:white">
@@ -43,5 +51,4 @@
         <hr class="my-3">
       <% end %>
     </div>
-  </div>
 </div>

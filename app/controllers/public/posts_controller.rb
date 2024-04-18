@@ -30,7 +30,6 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
     @user = @post.user
-    
     @post_tags = @post.tags
   end
 

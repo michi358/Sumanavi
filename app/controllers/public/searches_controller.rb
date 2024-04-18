@@ -7,8 +7,12 @@ class Public::SearchesController < ApplicationController
 
     if @model == "User"
       @users = User.search_for(@content, @method).page(params[:page])
-    else @model == "Post"
+    elsif @model == "Post"
       @posts = Post.search_for(@content, @method).page(params[:page])
+    elsif @model == "Genre"
+      @genres = Genre.search_for(@content, @method).page(params[:page])
+    else
+      @tags = Tag.search_for(@content, @method).page(params[:page])
     end
   end
   
@@ -20,9 +24,7 @@ class Public::SearchesController < ApplicationController
   
   def tag_search
     @tag_id = params[:tag_id]
-    #検索されたタグを受け取る
     @tag = Tag.find(@tag_id)
-   #検索されたタグに紐づく投稿を表示
     @posts = @tag.posts.page(params[:page])
   end
 end
