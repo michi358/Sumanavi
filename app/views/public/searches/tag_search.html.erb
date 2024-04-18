@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag "application" %>
-  
+
   <div class="container">
     <h3 class="m-3">
       <i class="fa-sharp fa-solid fa-tag"></i>
@@ -14,7 +14,7 @@
             <th>投稿日時</th>
           </tr>
           <% @posts.each do |post| %>
-            <tr>  
+            <tr>
               <td class="pr-0"><%= image_tag post.user.get_profile_image(30,30) %></td>
               <td class="pl-0"><%= link_to post.user.name, user_path(post.user_id) %></td>
               <td><%= link_to post.title, post_path(post.id) %></td>

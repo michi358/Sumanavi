@@ -1,0 +1,37 @@
+<%= stylesheet_link_tag "application" %>
+  
+  <div class="container">
+    <h3 class="m-3">"<%= @content %>"の検索結果</h3>
+    <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
+      <div class="col mx-auto text-center">
+        <table class="table  table-sm text-center table-hover">
+          <% if @model == "User" %>
+            <tbody>
+              <% @users.each do |user| %>
+                <tr>
+                  <td>
+                    <%= image_tag user.get_profile_image(30,30) %>
+                    <%= user.name %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+            <%= paginate @users %>
+          <% else %>
+            <tbody>
+              <%= @posts.each do |user| %>
+                <tr>
+                  <td>
+                    <%= @posts.title %>
+                </tr>
+              <% end %>
+            </tbody>
+            <%= paginate @posts %>
+          <% end %>
+            
+         
+        </table>
+      </div>
+    </div>
+
+</div>
