@@ -1,5 +1,4 @@
-<%= stylesheet_link_tag "application" %>
-  
+<%= stylesheet_link_tag "admin_application" %>  
   <div class="container">
     <h3 class="mt-3"><%= @model_name %>&nbsp;>>&nbsp;"<b><%= @content %></b>"の検索結果</h3>
     <p class="ml-2"><i class="fa-solid fa-lightbulb"></i></i>&nbsp;<%= @records.count%>件ヒット</p>
@@ -16,7 +15,7 @@
                     <tr>
                       <td>
                         <%= image_tag user.get_profile_image(40,40) %>
-                        <%= link_to user.name, user_path(user) %>
+                        <%= link_to user.name, admin_user_path(user) %>
                       </td>
                     </tr>
                   <% end %>

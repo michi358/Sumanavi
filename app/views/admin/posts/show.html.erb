@@ -12,7 +12,7 @@
       <!-- タグリスト -->
       <% @post_tags.each do |tag| %>
       <i class="fa-sharp fa-solid fa-tag"></i>
-        <%= link_to tag.name,tag_search_path(tag_id: tag.id), method: :get %>
+        <%= link_to tag.name,admin_tag_search_path(tag_id: tag.id), method: :get %>
       <% end %>
       
       <!--コメント数、いいねボタン-->

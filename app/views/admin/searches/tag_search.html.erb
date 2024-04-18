@@ -1,5 +1,4 @@
-<%= stylesheet_link_tag "application" %>
-
+<%= stylesheet_link_tag "admin_application" %>  
   <div class="container">
     <h3 class="m-3">
       <i class="fa-sharp fa-solid fa-tag"></i>
@@ -17,7 +16,7 @@
             <tr>
               <td class="pr-0"><%= image_tag post.user.get_profile_image(30,30) %></td>
               <td class="pl-0"><%= link_to post.user.name, user_path(post.user_id) %></td>
-              <td><%= link_to post.title, post_path(post.id) %></td>
+              <td><%= link_to post.title, admin_post_path(post.id) %></td>
               <td><%= l post.created_at, format: :time %></td>
             </tr>
           <% end %>
