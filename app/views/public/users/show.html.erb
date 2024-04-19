@@ -25,14 +25,28 @@
   </div>
 
   <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
-    <h3>投稿一覧</h3>
-    <table class="table text-center table-borderless">
+    <h3 class="m-3">投稿一覧&nbsp;（<%= @posts.count %>件）</h3>
+    <table class="table  table text-center table-hover mb-0">
+      <tr>
+        <th class="col-3">タイトル</th>
+        <th class="col-2">カテゴリー</th>
+        <th class="col-2">投稿日</th>
+        <th class="col-2">コメント/いいね</th>
+      </tr>
     <% @posts.each do |post| %>
       <tr>
         <td><%= link_to post.title, post_path(post.id) %></td>
-        <td><%= l post.created_at, format: :time %></td>
-      <% end %>
+        <td><%= link_to post.genre.name,genre_search_path(genre_id: post.genre_id), method: :get %></td>
+        <td><%= l post.created_at, format: :short %></td>
+        <td>
+          <i class="fa-solid fa-comment"></i><%= post.post_comments.count %>/
+          <i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %>
+        </td>
       </tr>
+      <% end %>
     </table>
+    <div class="row col-12 justify-content-center">
+      <%= paginate @posts %>
+    </div>
   </div>
 

@@ -1,6 +1,6 @@
 class Public::PostsController < ApplicationController
-  
-  before_action :is_matching_login_user, only: [:edit, :update]
+  before_action :authenticate_user!, only:[:new,:create,:edit,:update,:destroy]
+  before_action :is_matching_login_user, only: [:edit,:update,:destroy]
   
   def index
     @posts = Post.all.page(params[:page])
@@ -23,7 +23,6 @@ class Public::PostsController < ApplicationController
       flash.now[:alert] = "投稿に失敗しました。"
       render :new
     end
-
   end
 
   def show
@@ -66,6 +65,7 @@ class Public::PostsController < ApplicationController
   def is_matching_login_user
     post = Post.find(params[:id])
     unless post.user_id == current_user.id
+      flash[:alert] = "アクセス権限がありません"
       redirect_to posts_path
     end
   end
