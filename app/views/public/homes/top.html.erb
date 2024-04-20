@@ -40,15 +40,13 @@
   </script>
 </div>
 
-
-
+<!--最新記事-->
 <div class="container">
   <div class="row shadow-lg my-3 p-3 rounded" style="background-color:white">
     <div class="balloon d-flex align-items-end justify-content-center m-2">
       <h3 class="mr-4 mb-0">最新の記事</h3>
       <p class="align-self-end mb-0">新着記事をお届け</p>
     </div>
-
     <div class="col mt-2 mx-5">
       <table class="table table-sm">
         <tr>
@@ -65,67 +63,67 @@
           <% end %>
           </tr>
       </table>
-
       <div class="row justify-content-end mt-0">
         <%= link_to "すべての記事を見る>", posts_path %>
       </div>
     </div>
   </div>
 
-    <div class="row justify-content-between">
-        <div class="col shadow-lg my-3 p-3 mr-1 rounded" style="background-color:white">
-          <div class="balloon d-flex align-items-end justify-content-center m-2">
-            <h5 class="mr-4 mb-0">カテゴリー</h5>
-          </div>
-          <div class="list-group ml-5 my-3">
-          <% @genres.each do |genre| %>
-          <%= link_to genre.name, genre_search_path(genre_id: genre.id), method: :get %>
-          <% end %>
-          </div>
-
-        </div>
-        <div class="col  shadow-lg my-3 p-3 rounded" style="background-color:white">
-          <div class="balloon d-flex align-items-end justify-content-center m-2">
-            <h5 class="mr-4 mb-0">人気記事</h5>
-          </div>
-          <div class="text-center my-1">
-            <h5>いいね数 TOP３</h5>
-          </div>
-          <table>
-            <!--同率順位表示-->
-            <% last_favorite = 0 %>
-            <% j = 1 %>
-            <% count = 0 %>
-            <% @post_favorite_ranks.each.with_index(1) do |post, i| %>
-              <!-- 最初の値をlast_favoriteに保存 -->
-              <% if i == 1 %>
-                <% last_favorite = post.favorites.count %>
-              <% end %>
-              <!-- last_favoriteといいね数比べて同じなら同じ順位、違うなら次の順位表示 -->
-              <% if post.favorites.count != last_favorite %>
-                <% j = i %>
-              <% end %>
-              <!-- 同率でも、3つまでしか表示しない -->
-              <% if count < 3 %>
-                <% if post.favorites.count != last_favorite %>
-                  <% j = i %>
-                <% end %>
-                <tr>
-                  <td>第<%= j %>位</td>
-                  <td><%= post.title %></td>
-                  <td><i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %></td>
-                </tr>
-                <% count += 1 %>
-              <% end %>
-              <!-- 3つ以上の場合はループを中断 -->
-              <% break if count >= 3 %>
-              <% last_favorite = post.favorites.count %>
-            <% end %>
-          </table>
-
-        </div>
-
+  <div class="row justify-content-between">
+    <!--カテゴリー-->
+    <div class="col shadow-lg my-3 p-3 mr-1 rounded" style="background-color:white">
+      <div class="balloon d-flex align-items-end justify-content-center m-2">
+        <h5 class="mr-4 mb-0">カテゴリー</h5>
+      </div>
+      <div class="list-group ml-5 my-3">
+      <% @genres.each do |genre| %>
+      <%= link_to genre.name, genre_search_path(genre_id: genre.id), method: :get %>
+      <% end %>
+      </div>
     </div>
+    
+    <!--いいねランキング-->
+    <div class="col  shadow-lg my-3 p-3 rounded" style="background-color:white">
+      <div class="balloon d-flex align-items-end justify-content-center m-2">
+        <h5 class="mr-4 mb-0">人気記事</h5>
+      </div>
+      <div class="text-center my-1">
+        <h5>いいね数 TOP３</h5>
+      </div>
+      <table>
+        <!--同率順位表示-->
+        <% last_favorite = 0 %>
+        <% j = 1 %>
+        <% count = 0 %>
+        <% @post_favorite_ranks.each.with_index(1) do |post, i| %>
+          <!-- 最初の値をlast_favoriteに保存 -->
+          <% if i == 1 %>
+            <% last_favorite = post.favorites.count %>
+          <% end %>
+          <!-- last_favoriteといいね数比べて同じなら同じ順位、違うなら次の順位表示 -->
+          <% if post.favorites.count != last_favorite %>
+            <% j = i %>
+          <% end %>
+          <!-- 同率でも、3つまでしか表示しない -->
+          <% if count < 3 %>
+            <% if post.favorites.count != last_favorite %>
+              <% j = i %>
+            <% end %>
+            <tr>
+              <td>第<%= j %>位</td>
+              <td><%= post.title %></td>
+              <td><i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %></td>
+            </tr>
+            <% count += 1 %>
+          <% end %>
+          <!-- 3つ以上の場合はループを中断 -->
+          <% break if count >= 3 %>
+          <% last_favorite = post.favorites.count %>
+        <% end %>
+      </table>
+    </div>
+  </div>
+    
 </div>
 
 
