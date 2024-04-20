@@ -4,22 +4,25 @@
     <h3 class="m-3"><%= @genre.name %>の記事一覧</h3>
     <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
       <div class="col mx-auto text-center">
-        <table class="table  table-sm text-center table-hover">
+        <table class="table text-center table-hover">
           <tr>
-            <th colspan="2">投稿者</th>
-            <th>タイトル</th>
-            <th>投稿日時</th>
+            <th class="col-3">投稿者</th>
+            <th class="col-3">タイトル</th>
+            <th class="col-3">投稿日</th>
+            <th class="col-3">コメント/いいね</th>
           </tr>
           <% @posts.each do |post| %>
             <tr>
-              <td class="pr-0"><%= image_tag post.user.get_profile_image(30,30) %></td>
-              <td class="pl-0"><%= link_to post.user.name, admin_user_path(post.user_id) %></td>
+              <td><%= image_tag post.user.get_profile_image(30,30) %><%= link_to post.user.name, admin_user_path(post.user_id) %></td>
               <td><%= link_to post.title, admin_post_path(post.id) %></td>
-              <td><%= l post.created_at, format: :time %></td>
+              <td><%= l post.created_at, format: :short %></td>
+              <td>
+                <i class="fa-solid fa-comment"></i><%= post.post_comments.count %>&nbsp;/&nbsp;
+                <i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %>
+              </td>
             </tr>
           <% end %>
         </table>
       </div>
     </div>
-    <%= paginate @posts %>
 </div>

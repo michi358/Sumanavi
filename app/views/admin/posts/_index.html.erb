@@ -17,7 +17,7 @@
           <td><%= link_to post.genre.name,admin_genre_search_path(genre_id: post.genre_id), method: :get %></td>
           <td><%= l post.created_at, format: :short %></td>
           <td>
-            <i class="fa-solid fa-comment"></i><%= post.post_comments.count %>/
+            <i class="fa-solid fa-comment"></i><%= post.post_comments.count %>&nbsp;/&nbsp;
             <i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %>
           </td>
         </tr>
@@ -31,7 +31,7 @@
           <td><%= link_to post.genre.name,genre_search_path(genre_id: post.genre_id), method: :get %></td>
           <td><%= l post.created_at, format: :short %></td>
           <td>
-            <i class="fa-solid fa-comment"></i><%= post.post_comments.count %>/
+            <i class="fa-solid fa-comment"></i><%= post.post_comments.count %>&nbsp;/&nbsp;
             <i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %>
           </td>
         </tr>

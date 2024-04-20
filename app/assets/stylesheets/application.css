@@ -15,6 +15,13 @@ footer{
   background-color: #afafb0;
 }
 
+.swiper-slide img {
+  width: 100%;  /* 幅を100%に設定 */
+  height: auto; /* 高さを自動調整 */
+  object-fit: contain;  /* 画像がスライド全体に収まるように表示 */
+  object-position: center;  /* 画像の位置を中央に設定 */
+}
+
 .balloon {
     position: relative;
     padding: 1rem 1rem 1rem 1.5rem;

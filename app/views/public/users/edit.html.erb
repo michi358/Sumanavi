@@ -26,7 +26,7 @@
         
         <!-- 退会リンク -->
         <div class="row justify-content-center">
-          <div class="col-md-6 text-center">
+          <div class="col-6 text-center">
             <% if @user == current_user %>
               <%= link_to '退会する場合はこちら', unsubscribe_users_path, class: "btn btn-danger btn-block" %>
             <% end %>
