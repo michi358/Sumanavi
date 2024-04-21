@@ -10,21 +10,27 @@
         <% if @records.present? %>
           <!--Userの検索結果-->
           <% if @model == "User" %>
-              <table class="table  table text-center table-hover table-borderless mb-0">
-                <tbody>
-                  <% @records.each do |user| %>
-                    <tr>
-                      <td>
-                        <%= image_tag user.get_profile_image(40,40) %>
-                        <%= link_to user.name, user_path(user) %>
-                      </td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-              <div class="row col-12 justify-content-center">
-                <%= paginate @records %>
+            <div class="container">
+              <div class="row">
+                <% @records.each do |user| %>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
+                  <div class="card">
+                    <div class="card-body text-center">
+                      <%= image_tag user.get_profile_image(30, 30), class: "rounded-circle mb-2" %>
+                      <h5 class="card-title"><%= link_to user.name, user_path(user) %></h5>
+                      <p class="card-text mb-0">フォロワー数: <%= user.followers.count %></p>
+                      <p class="card-text mb-0">フォロー数: <%= user.followings.count %></p>
+                      <p class="card-text">投稿数: <%= user.posts.count %></p>
+                      <%= render "public/relationships/btn", user: user, options: { button_size: "sm", class: "" } %>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+                <div class="row col-12 justify-content-center">
+                  <%= paginate @records %>
+                </div>
               </div>
+            </div>
               
           <!--Postの検索結果-->
           <% elsif @model == "Post" %>

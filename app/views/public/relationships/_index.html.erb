@@ -1,27 +1,25 @@
-<div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
-    <div class="col mx-auto text-center">
-      <% if users.exists? %>
-        <table class="table  table text-center table-hover">
-          <tr>
-            <th>ユーザー名</th>
-            <th>フォロワー数</th>
-            <th>フォロー数</th>
-            <th>投稿数</th>
-            <th></th>
-          </tr>
-          <% users.each do |user| %>
-            <tr>
-              <td><%= image_tag user.get_profile_image(30,30) %><%= link_to user.name, user_path(user) %></td>
-              <td><%= user.followers.count %></td>
-              <td><%= user.followings.count %></td>
-              <td><%= user.posts.count %></td>
-              <td><%= render "public/relationships/btn", user: user, options: { button_size: "sm", class: "" } %></td>
-            </tr>
-          <% end %>
-        </table>
-      <% else %>
-        <p>ユーザーはいません</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <% if users.exists? %>
+      <% users.each do |user| %>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
+          <div class="card">
+            <div class="card-body text-center">
+              <%= image_tag user.get_profile_image(30, 30), class: "rounded-circle mb-2" %>
+              <h5 class="card-title"><%= link_to user.name, user_path(user) %></h5>
+              <p class="card-text mb-0">フォロワー数: <%= user.followers.count %></p>
+              <p class="card-text mb-0">フォロー数: <%= user.followings.count %></p>
+              <p class="card-text">投稿数: <%= user.posts.count %></p>
+              <%= render "public/relationships/btn", user: user, options: { button_size: "sm", class: "" } %>
+            </div>
+          </div>
+        </div>
       <% end %>
-    </div>
+    <% else %>
+      <div class="col text-center">
+        <p>ユーザーはいません</p>
+      </div>
+    <% end %>
   </div>
   <%= paginate users %>
+</div>

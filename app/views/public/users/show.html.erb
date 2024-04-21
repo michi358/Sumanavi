@@ -4,49 +4,66 @@
 <div class="container">
   <h3 class="m-3"><%= @user.name%>さんのページ</h3>
   <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
-    <table class="table text-center table-borderless">
-      <tr><td><%= image_tag @user.get_profile_image(100,100) %></td></tr>
-      <tr><td><%= @user.name %></td></tr>
-      <tr><td>フォロー中：<%= link_to @user.followings.count, user_followings_path(@user) %></td></tr>
-      <tr><td>フォロワー：<%= link_to @user.followers.count, user_followers_path(@user) %></td></tr>
-      <tr>
-        <td>
-          <%= render "public/relationships/btn", user: @user, options: { class: ""} %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <% if @user == current_user && !@user.guest_user? %>
+    <div class="col-10 text-center">
+      <%= image_tag @user.get_profile_image(100,100) %><br>
+      <h5><%= @user.name %></h5><br>
+      <p class="mb-0">フォロー中：<%= link_to @user.followings.count, user_followings_path(@user) %></p><br>
+      <p class="mb-0">フォロワー：<%= link_to @user.followers.count, user_followers_path(@user) %></p><br>
+      <div class="my-1">
+        <%= render "public/relationships/btn", user: @user, options: { class: ""} %>
+        <% if @user == current_user && !@user.guest_user? %>
           <%= link_to "登録情報の編集はこちら", edit_user_path(@user.id), class:"btn btn-outline-info" %>
-          <% end %>
-        </td>
-       </tr>
-    </table>
-  </div>
-
-  <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
-    <h3 class="m-3">投稿一覧&nbsp;（<%= @posts.count %>件）</h3>
-    <table class="table  table text-center table-hover mb-0">
-      <tr>
-        <th class="col-3">タイトル</th>
-        <th class="col-2">カテゴリー</th>
-        <th class="col-2">投稿日</th>
-        <th class="col-2">コメント/いいね</th>
-      </tr>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= link_to post.title, post_path(post.id) %></td>
-        <td><%= link_to post.genre.name,genre_search_path(genre_id: post.genre_id), method: :get %></td>
-        <td><%= l post.created_at, format: :short %></td>
-        <td>
-          <i class="fa-solid fa-comment"></i><%= post.post_comments.count %>/
-          <i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-    <div class="row col-12 justify-content-center">
-      <%= paginate @posts %>
+        <% end %>
+      </div>
     </div>
   </div>
 
+  <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
+    <div class="col-12 text-center">
+      <h3 class="m-3">投稿一覧&nbsp;（<%= @posts.count %>件）</h3>
+    </div>
+    <div class="col mx-auto text-center">
+        <div class="container">
+          <div class="row">
+            <% @posts.each do |post| %>
+              <div class="col-md-8 col-lg-12">
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <!-- 画面サイズが大きい場合のレイアウト -->
+                      <div class="col-lg-8 d-none d-lg-block">
+                        <h5 class="card-title"><%= link_to post.title, post_path(post.id) %></h5>
+                      </div>
+                      <div class="col-lg-4 d-none d-lg-block">
+                        <p class="card-text">
+                          <i class="fa-solid fa-layer-group"></i>
+                          <%= link_to post.genre.name, genre_search_path(genre_id: post.genre_id), method: :get %><br>
+                          <i class="fa-solid fa-comment"></i> <%= post.post_comments.count %> /
+                          <i class="fa-solid fa-thumbs-up"></i> <%= post.favorites.count %><br>
+                          <%= l post.created_at, format: :time %>
+                        </p>
+                      </div>
+                      <!-- 画面サイズが大きくない場合のレイアウト -->
+                      <div class="col-12 d-lg-none">
+                        <h5 class="card-title mt-1"><%= link_to post.title, post_path(post.id) %></h5>
+                        <p class="card-text">
+                          <i class="fa-solid fa-layer-group"></i>
+                          <%= link_to post.genre.name, genre_search_path(genre_id: post.genre_id), method: :get %><br>
+                          <i class="fa-solid fa-comment"></i> <%= post.post_comments.count %> /
+                          <i class="fa-solid fa-thumbs-up"></i> <%= post.favorites.count %><br>
+                          <%= l post.created_at, format: :time %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="row justify-content-center">
+            <%= paginate @posts %>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

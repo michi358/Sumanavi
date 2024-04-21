@@ -48,20 +48,20 @@
       <p class="align-self-end mb-0">新着記事をお届け</p>
     </div>
     <div class="row col-12 justify-content-center mx-3 my-1">
-      <div class="col-4 text-center">
+      <div class="col-5 text-center">
         <p class="mb-0">投稿者</p>
       </div>
-      <div class="col-8 text-center">
+      <div class="col-7 text-center">
         <p class="mb-0">タイトル</p>
       </div>
     </div>
     <div class="row justify-content-center mx-3 border-bottom">
     <% @posts.order(created_at: :desc).limit(5).each do |post| %>
-      <div class="col-4 text-center mr-0 border-bottom mt-2">
+      <div class="col-5 text-center mr-0 border-bottom mt-2">
         <%= image_tag post.user.get_profile_image(30,30), class:"rounded-circle" %>
         <%= link_to post.user.name, user_path(post.user_id) %>
       </div>
-      <div class="col-8 text-center border-bottom mt-2">
+      <div class="col-7 text-center border-bottom mt-2">
         <%= link_to post.title, post_path(post.id) %>
       </div>
       
@@ -196,12 +196,14 @@
       </div>
       <div class="row justify-content-center ">
        
-        <% @top_users.each_with_index do |user, i| %>
+        <% @followe_ranks.each_with_index do |user, i| %>
         <div class="card my-1 col-10">
           <div class="card-body text-center p-2">
-            <h6 class="mb-1"><b>第<%= j %>位</b></h6>
+            
+            <h6 class="mb-1"><b>第<%= i+1 %>位</b></h6>
             <p class="mb-0"><%= link_to user.name,user_path(user.id) %></p>
             <p><i class="fa-solid fa-users"></i><%= user.followers.count %></p>
+          
         </div>
       </div>
         <% end %>
