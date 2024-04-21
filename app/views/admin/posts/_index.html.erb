@@ -2,47 +2,94 @@
 
 <div class="container">
   <div class="row">
-    <% posts.each do |post| %>
-      <div class="col-md-8 col-lg-12">
-        <div class="card mb-3">
-          <div class="card-body">
-            <div class="row align-items-center">
-              <!-- 画面サイズが大きい場合のレイアウト -->
-              <div class="col-lg-3 d-none d-lg-block">
-                <%= image_tag post.user.get_profile_image(30, 30), class: "rounded-circle" %>
-                <%= link_to post.user.name, user_path(post.user_id) %>
-              </div>
-              <div class="col-lg-5 d-none d-lg-block">
-                <h5 class="card-title"><%= link_to post.title, post_path(post.id) %></h5>
-              </div>
-              <div class="col-lg-4 d-none d-lg-block">
-                <p class="card-text">
-                  <i class="fa-solid fa-layer-group"></i>
-                  <%= link_to post.genre.name, genre_search_path(genre_id: post.genre_id), method: :get %><br>
-                  <i class="fa-solid fa-comment"></i> <%= post.post_comments.count %> /
-                  <i class="fa-solid fa-thumbs-up"></i> <%= post.favorites.count %><br>
-                  <%= l post.created_at, format: :time %>
-                  
-                </p>
-              </div>
-              <!-- 画面サイズが大きくない場合のレイアウト -->
-              <div class="col-12 d-lg-none">
-                <%= image_tag post.user.get_profile_image(30, 30), class: "rounded-circle" %>
-                <%= link_to post.user.name, user_path(post.user_id) %><br>
-                <h5 class="card-title mt-1"><%= link_to post.title, post_path(post.id) %></h5>
-                <p class="card-text">
-                  <i class="fa-solid fa-layer-group"></i>
-                  <%= link_to post.genre.name, genre_search_path(genre_id: post.genre_id), method: :get %><br>
-                  <i class="fa-solid fa-comment"></i> <%= post.post_comments.count %> /
-                  <i class="fa-solid fa-thumbs-up"></i> <%= post.favorites.count %><br>
-                  <%= l post.created_at, format: :time %>
-                </p>
+    <!--adminログイン中-->
+    <% if admin_signed_in? %>
+      <% posts.each do |post| %>
+        <div class="col-md-12 col-lg-12">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <!-- 画面サイズが大きい場合のレイアウト -->
+                <div class="col-lg-3 d-none d-lg-block">
+                  <%= image_tag post.user.get_profile_image(30, 30), class: "rounded-circle" %>
+                  <%= link_to post.user.name, admin_user_path(post.user_id) %>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block">
+                  <h5 class="card-title"><%= link_to post.title, admin_post_path(post.id) %></h5>
+                </div>
+                <div class="col-lg-4 d-none d-lg-block">
+                  <p class="card-text">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <%= link_to post.genre.name, admin_genre_search_path(genre_id: post.genre_id), method: :get %><br>
+                    <i class="fa-solid fa-comment"></i> <%= post.post_comments.count %> /
+                    <i class="fa-solid fa-thumbs-up"></i> <%= post.favorites.count %><br>
+                    <%= l post.created_at, format: :time %>
+                    
+                  </p>
+                </div>
+                <!-- 画面サイズが大きくない場合のレイアウト -->
+                <div class="col-12 d-lg-none">
+                  <%= image_tag post.user.get_profile_image(30, 30), class: "rounded-circle" %>
+                  <%= link_to post.user.name, admin_user_path(post.user_id) %><br>
+                  <h5 class="card-title mt-1"><%= link_to post.title, admin_post_path(post.id) %></h5>
+                  <p class="card-text">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <%= link_to post.genre.name, admin_genre_search_path(genre_id: post.genre_id), method: :get %><br>
+                    <i class="fa-solid fa-comment"></i> <%= post.post_comments.count %> /
+                    <i class="fa-solid fa-thumbs-up"></i> <%= post.favorites.count %><br>
+                    <%= l post.created_at, format: :time %>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      <% end %>
+    <!--ここまでadminログイン中-->
+    <!--adminログイン以外-->
+    <% else %>
+      <% posts.each do |post| %>
+        <div class="col-md-12 col-lg-12">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <!-- 画面サイズが大きい場合のレイアウト -->
+                <div class="col-lg-3 d-none d-lg-block">
+                  <%= image_tag post.user.get_profile_image(30, 30), class: "rounded-circle" %>
+                  <%= link_to post.user.name, user_path(post.user_id) %>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block">
+                  <h5 class="card-title"><%= link_to post.title, post_path(post.id) %></h5>
+                </div>
+                <div class="col-lg-4 d-none d-lg-block">
+                  <p class="card-text">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <%= link_to post.genre.name, genre_search_path(genre_id: post.genre_id), method: :get %><br>
+                    <i class="fa-solid fa-comment"></i> <%= post.post_comments.count %> /
+                    <i class="fa-solid fa-thumbs-up"></i> <%= post.favorites.count %><br>
+                    <%= l post.created_at, format: :time %>
+                  </p>
+                </div>
+                <!-- 画面サイズが大きくない場合のレイアウト -->
+                <div class="col-12 d-lg-none">
+                  <%= image_tag post.user.get_profile_image(30, 30), class: "rounded-circle" %>
+                  <%= link_to post.user.name, user_path(post.user_id) %><br>
+                  <h5 class="card-title mt-1"><%= link_to post.title, post_path(post.id) %></h5>
+                  <p class="card-text">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <%= link_to post.genre.name, genre_search_path(genre_id: post.genre_id), method: :get %><br>
+                    <i class="fa-solid fa-comment"></i> <%= post.post_comments.count %> /
+                    <i class="fa-solid fa-thumbs-up"></i> <%= post.favorites.count %><br>
+                    <%= l post.created_at, format: :time %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
+    <!--ここまでadminログイン以外-->
   </div>
   <div class="row justify-content-center">
     <%= paginate posts %>

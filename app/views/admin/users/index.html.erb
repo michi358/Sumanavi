@@ -4,26 +4,47 @@
   <h3 class="m-3">ユーザー一覧</h3>
   <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
     <div class="col mx-auto text-center">
-      <table class="table text-center table-hover">
-        <tr>
-          <th>ユーザー名</th>
-          <th>メールアドレス</th>
-          <th>ユーザーステータス</th>
-        </tr>
-        <% @users.each do |user| %>
-        <tr>
-          <td><%= link_to user.name, admin_user_path(user.id), method: :get %></td>
-          <td><%= user.email %></td>
-          <td>
-            <% if user.is_active == true %>
-              <p class="text-success"><b>有効</b></p>
-            <% else %>
-              <p class="text-black-50"><b>退会</b></p>
+      <div class="container">
+        <div class="row">
+          <% @users.each do |user| %>
+            <div class="col-md-12 col-lg-12">
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <!-- 画面サイズが大きい場合のレイアウト -->
+                      <div class="col-lg-6 d-none d-lg-block">
+                        <%= link_to user.name, admin_user_path(user.id), method: :get %>
+                      </div>
+                      <div class="col-lg-3 d-none d-lg-block">
+                        <%= user.email %>
+                      </div>
+                      <div class="col-lg-3 d-none d-lg-block">
+                        <% if user.is_active == true %>
+                          <p class="text-success mb-0"><b>有効</b></p>
+                        <% else %>
+                          <p class="text-black-50 mb-0"><b>退会</b></p>
+                        <% end %>
+                      </div>
+                      <!-- 画面サイズが大きくない場合のレイアウト -->
+                      <div class="col-12 d-lg-none">
+                        <%= link_to user.name, admin_user_path(user.id), method: :get %><br>
+                        <%= user.email %><br>
+                        <% if user.is_active == true %>
+                          <p class="text-success mb-0"><b>有効</b></p><br>
+                        <% else %>
+                          <p class="text-black-50 mb-0"><b>退会</b></p><br>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <% end %>
-          </td>
-        </tr>
-        <% end %>
-      </table>
+          </div>
+          <div class="row justify-content-center">
+            <%= paginate @users %>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
 </div>
