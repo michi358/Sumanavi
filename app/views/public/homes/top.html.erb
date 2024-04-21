@@ -40,57 +40,123 @@
   </script>
 </div>
 
-<!--最新記事-->
 <div class="container">
+  <!--最新記事-->
   <div class="row shadow-lg my-3 p-3 rounded" style="background-color:white">
     <div class="balloon d-flex align-items-end justify-content-center m-2">
       <h3 class="mr-4 mb-0">最新の記事</h3>
       <p class="align-self-end mb-0">新着記事をお届け</p>
     </div>
-    <div class="col mt-2 mx-5">
-      <table class="table table-sm">
-        <tr>
-          <th>投稿者</th>
-          <th>タイトル</th>
-        </tr>
-        <% @posts.order(created_at: :desc). limit(5).each do |post| %>
-         <tr>
-            <td>
-              <%= image_tag post.user.get_profile_image(30,30),class:"rounded-circle" %>
-              <%= link_to post.user.name, user_path(post.user_id) %>
-            </td>
-            <td><%= link_to post.title, post_path(post.id) %></td>
-          <% end %>
-          </tr>
-      </table>
-      <div class="row justify-content-end mt-0">
-        <%= link_to "すべての記事を見る>", posts_path %>
+    <div class="row col-12 justify-content-center mx-3 my-1">
+      <div class="col-4 text-center">
+        <p class="mb-0">投稿者</p>
+      </div>
+      <div class="col-8 text-center">
+        <p class="mb-0">タイトル</p>
       </div>
     </div>
+    <div class="row justify-content-center mx-3 border-bottom">
+    <% @posts.order(created_at: :desc).limit(5).each do |post| %>
+      <div class="col-4 text-center mr-0 border-bottom mt-2">
+        <%= image_tag post.user.get_profile_image(30,30), class:"rounded-circle" %>
+        <%= link_to post.user.name, user_path(post.user_id) %>
+      </div>
+      <div class="col-8 text-center border-bottom mt-2">
+        <%= link_to post.title, post_path(post.id) %>
+      </div>
+      
+    <% end %>
   </div>
+      <div class="row  col-12 justify-content-end">
+        <div class="col-12 text-right">
+          <%= link_to "すべての記事を見る>", posts_path %>
+        </div>
+      </div>
+  </div>
+  <!--ここまで　最新記事-->
+
 
   <div class="row justify-content-between">
-    <!--カテゴリー-->
-    <div class="col shadow-lg my-3 p-3 mr-1 rounded" style="background-color:white">
+    <!--左のBOX-->
+    <div class="col-lg col-md-12 shadow-lg my-3 p-3 mr-1 rounded" style="background-color:white">
       <div class="balloon d-flex align-items-end justify-content-center m-2">
-        <h5 class="mr-4 mb-0">検索する</h5>
+        <h5 class="mr-4 mb-0">
+          <i class="fa-solid fa-magnifying-glass-plus"></i>
+          &nbsp;見つける</h5>
       </div>
-      <div class="list-group ml-5 my-3">
+      <!--カテゴリー-->
+      <div class="text-center my-5">
+        <h5>
+          <i class="fa-solid fa-layer-group"></i>
+          カテゴリーから記事を探す
+        </h5>
+      </div>
+      <div class="list-group my-3">
       <% @genres.each do |genre| %>
-      <%= link_to genre.name, genre_search_path(genre_id: genre.id), method: :get %>
+      <%= link_to genre.name, genre_search_path(genre_id: genre.id), method: :get, class:" btn btn-outline-dark btn-sm my-1" %>
       <% end %>
       </div>
-    </div>
     
-    <!--いいねランキング-->
-    <div class="col  shadow-lg my-3 p-3 rounded" style="background-color:white">
+      <!--タグー-->
+      <div class="text-center my-5">
+        <h5>
+          <i class="fa-sharp fa-solid fa-tag"></i>
+          タグから記事を探す
+        </h5>
+      </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+          <% @tags.each do |tag| %>
+            <div class="col mb-2">
+              <div class="card">
+                <div class="card-body p-2">
+                  <%= link_to tag.name, tag_search_path(tag_id: tag.id), method: :get %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="row justify-content-end mr-3">
+          >><%= paginate @tags %>
+        </div>
+        
+      <!--検索窓ー-->
+      <div class="text-center my-5">
+        <h5>
+          <i class="fa-solid fa-magnifying-glass"></i>
+          フリーワードで検索する
+        </h5>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-10 text-center">
+          <form action="<%= search_path %>" method="get" class="form-inline">
+            <div class="col-12 mb-1">
+              <%= text_field_tag :content, nil, class: 'form-control w-100', placeholder: '検索' %>
+            </div>
+            <div class="col-12 mb-1">
+              <%= select_tag :model, options_for_select({"ユーザー"=>"User","記事"=>"Post","カテゴリー"=>"Genre","タグ"=>"Tag"}), class: 'form-control' %>
+              <%= select_tag :method, options_for_select({"完全一致"=>"perfect","前方一致"=>"forward","後方一致"=>"backward","部分一致"=>"paratial"}), class: 'form-control' %>
+            </div>
+            <div class="col-12">
+            <button type="submit" class="btn btn-outline-light btn btn-secondary w-50">検索</button>
+            </div>
+          </form>
+       </div>
+     </div>
+     <!--ここまで検索窓ー-->
+     
+    </div>
+    <!--ここまで左のBOX-->
+    
+    <!--右のBOX-->
+    <div class="col-lg col-md-12 shadow-lg my-3 p-3 rounded" style="background-color:white">
       <div class="balloon d-flex align-items-end justify-content-center m-2">
-        <h5 class="mr-4 mb-0">人気記事</h5>
+        <h5 class="mr-4 mb-0">ランキング</h5>
       </div>
-      <div class="text-center my-1">
-        <h5>いいね数 TOP３</h5>
+      <!--いいねランキング-->
+      <div class="text-center mt-3">
+        <h5>いいね数 TOP３<i class="fa-solid fa-ranking-star"></i></h5>
       </div>
-      <table>
+      <div class="row justify-content-center">
         <!--同率順位表示-->
         <% last_favorite = 0 %>
         <% j = 1 %>
@@ -106,22 +172,47 @@
           <% end %>
           <!-- 同率でも、3つまでしか表示しない -->
           <% if count < 3 %>
-            <% if post.favorites.count != last_favorite %>
-              <% j = i %>
-            <% end %>
-            <tr>
-              <td>第<%= j %>位</td>
-              <td><%= post.title %></td>
-              <td><i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %></td>
-            </tr>
-            <% count += 1 %>
+            <div class="card my-1 col-10">
+              <div class="card-body text-center p-2">
+                <% if post.favorites.count != last_favorite %>
+                  <% j = i %>
+                <% end %>
+                <h6 class="mb-1"><b>第<%= j %>位</b></h6>
+                <p class="mb-0"><%= link_to post.title,post_path(post.id) %></p>
+                <p><i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %></p>
+                <% count += 1 %>
+              </div>
+            </div>
           <% end %>
           <!-- 3つ以上の場合はループを中断 -->
           <% break if count >= 3 %>
           <% last_favorite = post.favorites.count %>
         <% end %>
-      </table>
+      </div>
+      <!--ここまでいいねランキング-->
+      <!--フォロワーランキング-->
+       <div class="text-center mt-3">
+        <h5>フォロワー数 TOP３<i class="fa-solid fa-ranking-star"></i></h5>
+      </div>
+      <div class="row justify-content-center ">
+       
+        <% @top_users.each_with_index do |user, i| %>
+        <div class="card my-1 col-10">
+          <div class="card-body text-center p-2">
+            <h6 class="mb-1"><b>第<%= j %>位</b></h6>
+            <p class="mb-0"><%= link_to user.name,user_path(user.id) %></p>
+            <p><i class="fa-solid fa-users"></i><%= user.followers.count %></p>
+        </div>
+      </div>
+        <% end %>
+          
+         
+      </div>
+        
+      <!--ここまでフォロワーランキング-->
     </div>
+    <!--ここまで右のBOX-->
+    
   </div>
     
 </div>
