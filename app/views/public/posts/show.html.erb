@@ -24,19 +24,9 @@
         </div>
         <div class="col-1">
           <% if user_signed_in? %>
-            <% if @post.favorited_by?(current_user) %>
-              <p>
-                <%= link_to post_favorite_path(@post), method: :delete do %>
-                  <i class="fa-solid fa-thumbs-up"></i><%= @post.favorites.count %>
-                <% end %>
-              </p>
-            <% else %>
-              <p>
-                <%= link_to post_favorite_path(@post), method: :post do %>
-                  <i class="fa-regular fa-thumbs-up"></i><%= @post.favorites.count %>
-                <% end %>
-              </p>
-            <% end %>
+            <div id= "favorite_btn_<%= @post.id %>">
+              <%= render "public/favorites/btn", post: @post %>
+            </div>
           <% else %>
             <p><i class="fa-solid fa-thumbs-up"></i><%= @post.favorites.count %></p>
           <% end %>
