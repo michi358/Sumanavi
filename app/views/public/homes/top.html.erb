@@ -109,7 +109,7 @@
             <div class="col mb-2">
               <div class="card">
                 <div class="card-body p-2">
-                  <%= link_to tag.name, tag_search_path(tag_id: tag.id), method: :get %>
+                  <%= link_to "#{tag.name}(#{tag.posts.count})", tag_search_path(tag_id: tag.id), method: :get %>
                 </div>
               </div>
             </div>

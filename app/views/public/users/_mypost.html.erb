@@ -1,0 +1,52 @@
+<!--自分の投稿一覧-->
+<!-- render 'public/users/mypost', posts: @posts %>-->
+
+<div class="col text-center">
+  <div class="container">
+    <div class="row">
+      <% if posts.exists? %>
+        <% posts.each do |post| %>
+          <div class="col-md-12 col-lg-12">
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <!-- 画面サイズが大きい場合のレイアウト -->
+                  <div class="col-lg-8 d-none d-lg-block">
+                    <h5 class="card-title"><%= link_to post.title, post_path(post.id) %></h5>
+                  </div>
+                  <div class="col-lg-4 d-none d-lg-block">
+                    <p class="card-text">
+                      <i class="fa-solid fa-layer-group"></i>
+                      <%= link_to post.genre.name, genre_search_path(genre_id: post.genre_id), method: :get %><br>
+                      <i class="fa-solid fa-comment"></i> <%= post.post_comments.count %> /
+                      <i class="fa-solid fa-thumbs-up"></i> <%= post.favorites.count %><br>
+                      <%= l post.created_at, format: :time %>
+                    </p>
+                  </div>
+                  <!-- 画面サイズが大きくない場合のレイアウト -->
+                  <div class="col-12 d-lg-none">
+                    <h5 class="card-title mt-1"><%= link_to post.title, post_path(post.id) %></h5>
+                    <p class="card-text">
+                      <i class="fa-solid fa-layer-group"></i>
+                      <%= link_to post.genre.name, genre_search_path(genre_id: post.genre_id), method: :get %><br>
+                      <i class="fa-solid fa-comment"></i> <%= post.post_comments.count %> /
+                      <i class="fa-solid fa-thumbs-up"></i> <%= post.favorites.count %><br>
+                      <%= l post.created_at, format: :time %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="col text-center">
+          <p>表示できる投稿がありません</p>
+        </div>
+      <% end %>
+    </div>
+    <div class="row justify-content-center">
+      <%= paginate posts %>
+    </div>
+  </div>
+</div>

@@ -6,6 +6,8 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).per(10)
+    @following_posts = Post.includes(:user).where(user_id: current_user.following_ids)
+    @favorite_posts = Post.joins(:favorites).where(favorites: { user_id: current_user.id })
   end
   
   def edit

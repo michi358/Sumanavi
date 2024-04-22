@@ -17,53 +17,56 @@
       </div>
     </div>
   </div>
-
-  <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
-    <div class="col-12 text-center">
-      <h3 class="m-3">投稿一覧&nbsp;（<%= @posts.count %>件）</h3>
-    </div>
-    <div class="col mx-auto text-center">
-        <div class="container">
-          <div class="row">
-            <% @posts.each do |post| %>
-              <div class="col-md-8 col-lg-12">
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <div class="row align-items-center">
-                      <!-- 画面サイズが大きい場合のレイアウト -->
-                      <div class="col-lg-8 d-none d-lg-block">
-                        <h5 class="card-title"><%= link_to post.title, post_path(post.id) %></h5>
-                      </div>
-                      <div class="col-lg-4 d-none d-lg-block">
-                        <p class="card-text">
-                          <i class="fa-solid fa-layer-group"></i>
-                          <%= link_to post.genre.name, genre_search_path(genre_id: post.genre_id), method: :get %><br>
-                          <i class="fa-solid fa-comment"></i> <%= post.post_comments.count %> /
-                          <i class="fa-solid fa-thumbs-up"></i> <%= post.favorites.count %><br>
-                          <%= l post.created_at, format: :time %>
-                        </p>
-                      </div>
-                      <!-- 画面サイズが大きくない場合のレイアウト -->
-                      <div class="col-12 d-lg-none">
-                        <h5 class="card-title mt-1"><%= link_to post.title, post_path(post.id) %></h5>
-                        <p class="card-text">
-                          <i class="fa-solid fa-layer-group"></i>
-                          <%= link_to post.genre.name, genre_search_path(genre_id: post.genre_id), method: :get %><br>
-                          <i class="fa-solid fa-comment"></i> <%= post.post_comments.count %> /
-                          <i class="fa-solid fa-thumbs-up"></i> <%= post.favorites.count %><br>
-                          <%= l post.created_at, format: :time %>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <% end %>
+  
+  <!--ログイン中のマイページの時は、ナビバーを表示する-->
+  <% if @user == current_user %>
+    <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
+      <div class="col-12">
+        <ul class="nav nav-tabs" role="posts">
+          <li class="nav-item">
+            <a class="nav-link active" id="MyPost-tab" data-toggle="tab" href="#MyPost" role="tab" aria-controls="MyPost" aria-selected="true">自分の投稿</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="FollowingsPost-tab" data-toggle="tab" href="#FollowingsPost" role="tab" aria-controls="FollowingsPost" aria-selected="false">フォロー中ユーザーの投稿</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="FavoritesPost-tab" data-toggle="tab" href="#FavoritesPost" role="tab" aria-controls="FavoritesPost" aria-selected="false">いいねした投稿</a>
+          </li>
+        </ul>
+      </div>
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="MyPost" role="tabpanel" aria-labelledby="MyPost-tab">
+          <!-- "自分の投稿"のコンテンツ -->
+          <div class="col-12 text-center">
+            <h3 class="m-3">投稿一覧&nbsp;（全<%= @user.posts.count %>件）</h3>
           </div>
-          <div class="row justify-content-center">
-            <%= paginate @posts %>
+          <%= render 'mypost', posts: @posts %>
+        </div>
+        <div class="tab-pane fade" id="FollowingsPost" role="tabpanel" aria-labelledby="FollowingsPost-tab">
+          <!-- "フォロー中ユーザーの投稿"のコンテンツ -->
+          <div class="col-12 text-center">
+            <h3 class="m-3">投稿一覧</h3>
+          </div>
+            <%= render 'post_index', post_index: @following_posts %>
+        </div>
+        <div class="tab-pane fade" id="FavoritesPost" role="tabpanel" aria-labelledby="FavoritesPost-tab">
+          <!-- "いいねした記事"のコンテンツ -->
+          <div class="col-12 text-center">
+            <h3 class="m-3">投稿一覧&nbsp;（<%= @favorite_posts.count %>件）</h3>
+          </div>
+            <%= render 'post_index', post_index: @favorite_posts %>
           </div>
         </div>
       </div>
     </div>
+    <!--ここまで ログイン中のマイページの時は、ナビバーを表示する-->
+    <!--ログインユーザー以外の人のshowページの時-->
+  <% else %>
+    <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
+    <div class="col-12 text-center">
+      <h3 class="m-3">投稿一覧&nbsp;（<%= @posts.count %>件）</h3>
+    </div>
+    <%= render 'mypost', posts: @posts %>
+  <% end %>
+    <!--ここまでログインユーザー以外の人のshowページの時-->
 </div>
