@@ -1,6 +1,5 @@
 <%= stylesheet_link_tag "application" %>
 
-
 <div class="container">
   <h3 class="m-3"><%= @user.name%>さんのページ</h3>
   <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
@@ -32,33 +31,53 @@
           <li class="nav-item">
             <a class="nav-link" id="FavoritesPost-tab" data-toggle="tab" href="#FavoritesPost" role="tab" aria-controls="FavoritesPost" aria-selected="false">いいねした投稿</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" id="DraftPost-tab" data-toggle="tab" href="#DraftPost" role="tab" aria-controls="DraftPost" aria-selected="false">下書き</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="UnpublishedPost-tab" data-toggle="tab" href="#UnpublishedPost" role="tab" aria-controls="UnpublishedPost" aria-selected="false">非公開の投稿</a>
+          </li>
         </ul>
       </div>
       <div class="tab-content">
+        <!-- "自分の投稿"のコンテンツ -->
         <div class="tab-pane fade show active" id="MyPost" role="tabpanel" aria-labelledby="MyPost-tab">
-          <!-- "自分の投稿"のコンテンツ -->
           <div class="col-12 text-center">
             <h3 class="m-3">投稿一覧&nbsp;（全<%= @posts.total_count %>件）</h3>
           </div>
           <%= render 'mypost', posts: @posts %>
         </div>
+        <!-- "フォロー中ユーザーの投稿"のコンテンツ -->
         <div class="tab-pane fade" id="FollowingsPost" role="tabpanel" aria-labelledby="FollowingsPost-tab">
-          <!-- "フォロー中ユーザーの投稿"のコンテンツ -->
           <div class="col-12 text-center">
             <h3 class="m-3">投稿一覧&nbsp;（<%= @following_posts.count %>件）</h3>
           </div>
             <%= render 'post_index', post_index: @following_posts %>
         </div>
+        <!-- "いいねした投稿"のコンテンツ -->
         <div class="tab-pane fade" id="FavoritesPost" role="tabpanel" aria-labelledby="FavoritesPost-tab">
-          <!-- "いいねした記事"のコンテンツ -->
           <div class="col-12 text-center">
             <h3 class="m-3">投稿一覧&nbsp;（<%= @favorite_posts.count %>件）</h3>
           </div>
             <%= render 'post_index', post_index: @favorite_posts %>
+        </div>
+        <!-- "下書き一覧"のコンテンツ -->
+        <div class="tab-pane fade" id="DraftPost" role="tabpanel" aria-labelledby="DraftPost-tab">
+          <div class="col-12 text-center">
+            <h3 class="m-3">下書き一覧&nbsp;（<%= @draft_posts.count %>件）</h3>
           </div>
+            <%= render 'post_index', post_index: @draft_posts %>
+        </div>
+        <!-- "非公開一覧"のコンテンツ -->
+        <div class="tab-pane fade" id="UnpublishedPost" role="tabpanel" aria-labelledby="UnpublishedPost-tab">
+          <div class="col-12 text-center">
+            <h3 class="m-3">下書き一覧&nbsp;（<%= @unpublished_posts.count %>件）</h3>
+          </div>
+            <%= render 'post_index', post_index: @unpublished_posts %>
         </div>
       </div>
     </div>
+  </div>
     <!--ここまで ログイン中のマイページの時は、ナビバーを表示する-->
     <!--ログインユーザー以外の人のshowページの時-->
   <% else %>

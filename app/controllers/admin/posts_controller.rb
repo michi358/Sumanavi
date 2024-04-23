@@ -1,13 +1,12 @@
 class Admin::PostsController < ApplicationController
   def index
-    @posts = Post.all.page(params[:page]).per(10)
      # ソート機能
     if params[:latest]
-      @posts = Post.latest.page(params[:page]).per(10)
+      @posts = Post.published.latest.page(params[:page]).per(10)
     elsif params[:old]
-      @posts = Post.old.page(params[:page]).per(10)
+      @posts = Post.published.old.page(params[:page]).per(10)
     else
-      @books = Post.all.page(params[:page]).per(10)
+      @posts = Post.published.all.page(params[:page]).per(10)
     end
   end
 

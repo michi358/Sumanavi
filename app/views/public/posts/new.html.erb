@@ -22,6 +22,15 @@
           <label for="inputContent">タグ（,で区切ると複数タグ登録できます。最大50文字以内）</label>
           <%= f.text_field :name,value: @tag_list, class: 'form-control' %>
         </div>
+        <div class="form-group text-left">
+          <label for="inputContent">投稿ステータス</label>
+          <%= f.radio_button :status, :published, checked: true %>
+          <%= f.label :status_published, "公開" %>
+          <%= f.radio_button :status, :draft %>
+          <%= f.label :status_draft, "下書き" %>
+          <%= f.radio_button :status, :unpublished %>
+          <%= f.label :status_unpublished, "非公開" %>
+        </div>
         <%= f.submit '投稿', class: "btn btn-primary" %>
         <% end %>
     </div>
