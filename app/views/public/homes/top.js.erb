@@ -1,0 +1,2 @@
+$('#tag_list').html('<%= j(render "tag_list", object: @tags) %>');
+$('#pagination').html('<%= j(paginate(@tags, remote: true, class: "pagination", id: "pagination")) %>');

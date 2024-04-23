@@ -17,7 +17,7 @@
       </div>
     </div>
   </div>
-  
+
   <!--ログイン中のマイページの時は、ナビバーを表示する-->
   <% if @user == current_user %>
     <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
@@ -38,14 +38,14 @@
         <div class="tab-pane fade show active" id="MyPost" role="tabpanel" aria-labelledby="MyPost-tab">
           <!-- "自分の投稿"のコンテンツ -->
           <div class="col-12 text-center">
-            <h3 class="m-3">投稿一覧&nbsp;（全<%= @user.posts.count %>件）</h3>
+            <h3 class="m-3">投稿一覧&nbsp;（全<%= @posts.total_count %>件）</h3>
           </div>
           <%= render 'mypost', posts: @posts %>
         </div>
         <div class="tab-pane fade" id="FollowingsPost" role="tabpanel" aria-labelledby="FollowingsPost-tab">
           <!-- "フォロー中ユーザーの投稿"のコンテンツ -->
           <div class="col-12 text-center">
-            <h3 class="m-3">投稿一覧</h3>
+            <h3 class="m-3">投稿一覧&nbsp;（<%= @following_posts.count %>件）</h3>
           </div>
             <%= render 'post_index', post_index: @following_posts %>
         </div>

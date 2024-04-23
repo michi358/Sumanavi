@@ -1,9 +1,15 @@
 <%= stylesheet_link_tag "application" %>
 
 <div class="container">
-  <h3 class="m-3">記事一覧</h3>
+  <h3 class="m-3">投稿一覧</h3>
   <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
     <div class="col mx-auto text-center">
+      <!--ソートのリンク-->
+      <div class="col-12 text-right">
+        <%= link_to '新しい順', posts_path(latest: "true") %>
+        |<%= link_to '古い順', posts_path(old: "true") %>
+      </div>
+      <!--ここまでソートのリンク-->
       <%= render 'admin/posts/index', posts: @posts %>
     </div>
   </div>

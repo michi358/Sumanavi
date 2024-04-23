@@ -5,7 +5,14 @@ class Public::UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).per(10)
+    # ソート機能
+    if params[:latest]
+      @posts = @user.posts.latest.page(params[:page]).per(10)
+    elsif params[:old]
+      @posts = @user.posts.old.page(params[:page]).per(10)
+    else
+      @posts = @user.posts.all.page(params[:page]).per(10)
+    end
     @following_posts = Post.includes(:user).where(user_id: current_user.following_ids)
     @favorite_posts = Post.joins(:favorites).where(favorites: { user_id: current_user.id })
   end

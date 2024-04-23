@@ -2,7 +2,7 @@
   
   <div class="container">
     <h3 class="mt-3"><%= @model_name %>&nbsp;>>&nbsp;"<b><%= @content %></b>"の検索結果</h3>
-    <p class="ml-2"><i class="fa-solid fa-lightbulb"></i></i>&nbsp;<%= @records.count%>件ヒット</p>
+    <p class="ml-2"><i class="fa-solid fa-lightbulb"></i></i>&nbsp;<%= @records.total_count %>件ヒット</p>
     
     <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
       <div class="col mx-auto text-center">

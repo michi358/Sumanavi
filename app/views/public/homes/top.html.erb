@@ -44,8 +44,8 @@
   <!--最新記事-->
   <div class="row shadow-lg my-3 p-3 rounded" style="background-color:white">
     <div class="balloon d-flex align-items-end justify-content-center m-2">
-      <h3 class="mr-4 mb-0">最新の記事</h3>
-      <p class="align-self-end mb-0">新着記事をお届け</p>
+      <h3 class="mr-4 mb-0">最新の投稿</h3>
+      <p class="align-self-end mb-0">新着情報をお届け</p>
     </div>
     <div class="row col-12 justify-content-center mx-3 my-1">
       <div class="col-5 text-center">
@@ -64,12 +64,12 @@
       <div class="col-7 text-center border-bottom mt-2">
         <%= link_to post.title, post_path(post.id) %>
       </div>
-      
+
     <% end %>
   </div>
       <div class="row  col-12 justify-content-end">
         <div class="col-12 text-right">
-          <%= link_to "すべての記事を見る>", posts_path %>
+          <%= link_to "すべての投稿を見る>", posts_path %>
         </div>
       </div>
   </div>
@@ -85,54 +85,42 @@
           &nbsp;見つける</h5>
       </div>
       <!--カテゴリー-->
-      <div class="text-center my-5">
+      <div class="text-center mt-5 mb-2">
         <h5>
           <i class="fa-solid fa-layer-group"></i>
-          カテゴリーから記事を探す
+          カテゴリーから投稿を探す
         </h5>
       </div>
-      <div class="list-group my-3">
+      <div class="list-group my-4">
       <% @genres.each do |genre| %>
       <%= link_to genre.name, genre_search_path(genre_id: genre.id), method: :get, class:" btn btn-outline-dark btn-sm my-1" %>
       <% end %>
       </div>
-    
+
       <!--タグー-->
-      <div class="text-center my-5">
+      <div class="text-center mt-5 mb-2">
         <h5>
           <i class="fa-sharp fa-solid fa-tag"></i>
-          タグから記事を探す
+          タグから投稿を探す
         </h5>
       </div>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
-          <% @tags.each do |tag| %>
-            <div class="col mb-2">
-              <div class="card">
-                <div class="card-body p-2">
-                  <%= link_to "#{tag.name}(#{tag.posts.count})", tag_search_path(tag_id: tag.id), method: :get %>
-                </div>
-              </div>
-            </div>
-          <% end %>
+        <div id="tag_list">
+          <%= render "tag_list", tags: @tags %>
         </div>
-        <div class="row justify-content-end mr-3">
-          >><%= paginate @tags %>
-        </div>
-        
       <!--検索窓ー-->
-      <div class="text-center my-5">
+      <div class="text-center mt-5 mb-2">
         <h5>
           <i class="fa-solid fa-magnifying-glass"></i>
           フリーワードで検索する
         </h5>
       </div>
-      <div class="row justify-content-center">
+      <div class="row justify-content-center my-4">
         <div class="col-10 text-center">
           <form action="<%= search_path %>" method="get" class="form-inline">
-            <div class="col-12 mb-1">
+            <div class="col-12 mb-2">
               <%= text_field_tag :content, nil, class: 'form-control w-100', placeholder: '検索' %>
             </div>
-            <div class="col-12 mb-1">
+            <div class="col-12 mb-2">
               <%= select_tag :model, options_for_select({"ユーザー"=>"User","記事"=>"Post","カテゴリー"=>"Genre","タグ"=>"Tag"}), class: 'form-control' %>
               <%= select_tag :method, options_for_select({"完全一致"=>"perfect","前方一致"=>"forward","後方一致"=>"backward","部分一致"=>"paratial"}), class: 'form-control' %>
             </div>
@@ -143,10 +131,10 @@
        </div>
      </div>
      <!--ここまで検索窓ー-->
-     
+
     </div>
     <!--ここまで左のBOX-->
-    
+
     <!--右のBOX-->
     <div class="col-lg col-md-12 shadow-lg my-3 p-3 rounded" style="background-color:white">
       <div class="balloon d-flex align-items-end justify-content-center m-2">
@@ -195,28 +183,28 @@
         <h5>フォロワー数 TOP３<i class="fa-solid fa-ranking-star"></i></h5>
       </div>
       <div class="row justify-content-center ">
-       
+
         <% @followe_ranks.each_with_index do |user, i| %>
         <div class="card my-1 col-10">
           <div class="card-body text-center p-2">
-            
+
             <h6 class="mb-1"><b>第<%= i+1 %>位</b></h6>
             <p class="mb-0"><%= link_to user.name,user_path(user.id) %></p>
             <p><i class="fa-solid fa-users"></i><%= user.followers.count %></p>
-          
+
         </div>
       </div>
         <% end %>
-          
-         
+
+
       </div>
-        
+
       <!--ここまでフォロワーランキング-->
     </div>
     <!--ここまで右のBOX-->
-    
+
   </div>
-    
+
 </div>
 
 

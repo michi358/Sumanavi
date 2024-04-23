@@ -47,4 +47,8 @@ class Post < ApplicationRecord
     end  
   end
   
+  # ソート機能
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  
 end

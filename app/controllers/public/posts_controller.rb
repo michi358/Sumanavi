@@ -3,7 +3,14 @@ class Public::PostsController < ApplicationController
   before_action :is_matching_login_user, only: [:edit,:update,:destroy]
   
   def index
-    @posts = Post.all.page(params[:page]).per(10)
+    # ソート機能
+    if params[:latest]
+      @posts = Post.latest.page(params[:page]).per(10)
+    elsif params[:old]
+      @posts = Post.old.page(params[:page]).per(10)
+    else
+      @posts = Post.all.page(params[:page]).per(10)
+    end
   end
 
   def new
