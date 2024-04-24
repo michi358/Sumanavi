@@ -4,15 +4,49 @@
 </div>
 
 <div class="container my-3">
-  <div class="balloon">
-    <h4>できること</h4>
-  </div>
-  <div class="row m-5">
-  <ul>
-    <li>スマートフォンに関する情報の投稿</li>
-    <li>他のユーザーとの交流</li>
-    <!--<li>お気に入りの情報や投稿の保存</li>-->
-  </ul>
-  </div>
+  <!--３つのBOX-->
+  <div class="row justfy-content-center mt-5">
+    <div class="col-lg-4 col-md-4 col-sm-12">
+     <div class="box">
+      <div class="box_inner">
+        <h3>みつける</h3>
+        <p><strong>自分に合った投稿を見つけよう！</strong></p>
+        <p><i class="fa-solid fa-layer-group"></i> カテゴリーから探す</p>
+        <p><i class="fa-sharp fa-solid fa-tag"></i> タグ付けされたキーワードから探す</p>
+        <p><i class="fa-solid fa-magnifying-glass"></i> フリーワードで検索しよう</p>
+      </div>
+    </div>
 
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <div class="box">
+        <div class="box_inner">
+          <h3>つたえる</h3>
+          <p><strong>投稿してみよう!</strong></p>
+          <p>気軽に投稿してみよう</p>
+          <p>投稿した記事は、「下書きに保存」「非公開」にすることもできます</p>
+          <p>※会員登録が必要です</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <div class="box">
+        <div class="box_inner">
+          <h3>つながる</h3>
+          <p><strong>気軽につながる場にしよう！</strong></p>
+          <p>気に入った投稿にいいねやコメントをしよう</p>
+          <p>気になる投稿者をフォローしよう</p>
+          <p>※会員登録が必要です</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--ここまで３つのBOX-->
+  <!--会員登録-->
+  <div class="row justfy-content-center my-3">
+    <div class="col-12 text-center">
+      <h3 class="registration"><%= link_to "会員登録はこちらから", new_user_registration_path %></h3>
+    </div>
+  </div>
+  
 </div>

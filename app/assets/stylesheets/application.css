@@ -50,3 +50,55 @@ footer{
   width: 100vw; /* 最大幅を指定 */
   height: auto;
 }
+
+.box{
+  position: relative;
+}
+.box_inner{
+  padding: 1em;
+}
+.box:before,
+.box:after{
+  content: "";
+  width: 4em;
+  height: 4em;
+  position: absolute;
+}
+.box::before{
+  border-top: 2px solid #0094D6;
+  border-left: 2px solid #0094D6;
+}
+.box::after{
+  border-bottom: 2px solid #0094D6;
+  border-right: 2px solid #0094D6;
+  right: 0;
+  bottom: 0;
+}
+.box h3{
+  margin: 0 0 .5em;
+}
+.box h3:first-letter{
+  font-size: 1.4em;
+  color: #0094D6;
+}
+
+.registration {
+  position: relative;
+  color: #333;
+  display: inline-block;
+  margin: 47px 0;
+  text-shadow: 0 0 2px white;
+}
+.registration:before {
+  content: "";
+  position: absolute;
+  background: #bbdbf3;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  z-index: -1;
+}

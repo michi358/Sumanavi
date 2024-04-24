@@ -55,7 +55,7 @@
         <p class="mb-0">タイトル</p>
       </div>
     </div>
-    <div class="row justify-content-center mx-3 border-bottom">
+    <div class="row col-12 justify-content-center mx-3 border-bottom">
     <% @posts.order(created_at: :desc).limit(5).each do |post| %>
       <div class="col-5 text-center mr-0 border-bottom mt-2">
         <%= image_tag post.user.get_profile_image(30,30), class:"rounded-circle" %>
