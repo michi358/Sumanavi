@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag "admin_application" %>
 
 <div class="container">
-  <h3 class="m-3">ユーザー一覧</h3>
+  <h3 class="m-3">ユーザー一覧&nbsp;(全<%= @users.total_count%>件)</h3>
   <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
     <div class="col mx-auto text-center">
       <div class="container">

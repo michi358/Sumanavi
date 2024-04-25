@@ -9,7 +9,7 @@
               <h5 class="card-title"><%= link_to user.name, user_path(user) %></h5>
               <p class="card-text mb-0">フォロワー数: <%= user.followers.count %></p>
               <p class="card-text mb-0">フォロー数: <%= user.followings.count %></p>
-              <p class="card-text">投稿数: <%= user.posts.count %></p>
+              <p class="card-text">投稿数: <%= user.posts.published.count %></p>
               <%= render "public/relationships/btn", user: user, options: { button_size: "sm", class: "" } %>
             </div>
           </div>
