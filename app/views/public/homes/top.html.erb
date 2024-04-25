@@ -189,6 +189,7 @@
           <div class="card-body text-center p-2">
 
             <h6 class="mb-1"><b>第<%= i+1 %>位</b></h6>
+            <span><%= image_tag user.get_profile_image(30,30) %></span>
             <p class="mb-0"><%= link_to user.name,user_path(user.id) %></p>
             <p><i class="fa-solid fa-users"></i><%= user.followers.count %></p>
 
