@@ -2,8 +2,9 @@
 ​
 ## サイト概要
 ### サイトテーマ
+![top_1](https://github.com/michi358/Sumanavi/assets/156744214/b916c0f0-e8e1-4d94-af87-e1b15e6516c8)
+
 スマートフォンの使い方や活用方法などの情報を共有するためのSNS    
-<img src="app/assets/images/top_1.png" width="100">
 
 
 ### テーマを選んだ理由
