@@ -73,7 +73,7 @@
         </div>
       </div>
   </div>
-  <!--ここまで　最新記事-->
+  <!--↑ここまで最新記事-->
 
 
   <div class="row justify-content-between">
@@ -128,12 +128,11 @@
             <button type="submit" class="btn btn-outline-light btn btn-secondary w-50">検索</button>
             </div>
           </form>
-       </div>
-     </div>
-     <!--ここまで検索窓ー-->
-
+        </div>
+      </div>
+     <!--↑ここまで検索窓ー-->
     </div>
-    <!--ここまで左のBOX-->
+    <!--↑ここまで左のBOX-->
 
     <!--右のBOX-->
     <div class="col-lg col-md-12 shadow-lg my-3 p-3 rounded" style="background-color:white">
@@ -145,67 +144,50 @@
         <h5>いいね数 TOP３<i class="fa-solid fa-ranking-star"></i></h5>
       </div>
       <div class="row justify-content-center">
-        <!--同率順位表示-->
-        <% last_favorite = 0 %>
-        <% j = 1 %>
-        <% count = 0 %>
-        <% @post_favorite_ranks.each.with_index(1) do |post, i| %>
-          <!-- 最初の値をlast_favoriteに保存 -->
-          <% if i == 1 %>
-            <% last_favorite = post.favorites.count %>
+        <% last_favorite_count = nil %>
+        <% rank = 0 %>
+        <!--iは配列内でのインデックス（0,1,2が割り当てられる）-->
+        <% @post_favorite_ranks.each do |post| %>
+          <% if post.favorites.count != last_favorite_count %>
+            <% rank += 1 %>
           <% end %>
-          <!-- last_favoriteといいね数比べて同じなら同じ順位、違うなら次の順位表示 -->
-          <% if post.favorites.count != last_favorite %>
-            <% j = i %>
-          <% end %>
-          <!-- 同率でも、3つまでしか表示しない -->
-          <% if count < 3 %>
-            <div class="card my-1 col-10">
-              <div class="card-body text-center p-2">
-                <% if post.favorites.count != last_favorite %>
-                  <% j = i %>
-                <% end %>
-                <h6 class="mb-1"><b>第<%= j %>位</b></h6>
-                <p class="mb-0"><%= link_to post.title,post_path(post.id) %></p>
-                <p><i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %></p>
-                <% count += 1 %>
-              </div>
+          <% last_favorite_count = post.favorites.count %>
+          <div class="card my-1 col-10">
+            <div class="card-body text-center p-2">
+              <h6 class="mb-1"><b>第<%= rank %>位</b></h6>
+              <p class="mb-0"><%= link_to post.title, post_path(post.id) %></p>
+              <p><i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %></p>
             </div>
-          <% end %>
-          <!-- 3つ以上の場合はループを中断 -->
-          <% break if count >= 3 %>
-          <% last_favorite = post.favorites.count %>
+          </div>
+          <!--３つの投稿まででループを終了する-->
+          <% break if rank >= 3 %>
         <% end %>
       </div>
-      <!--ここまでいいねランキング-->
+      <!--↑ここまでいいねランキング-->
       <!--フォロワーランキング-->
        <div class="text-center mt-3">
         <h5>フォロワー数 TOP３<i class="fa-solid fa-ranking-star"></i></h5>
       </div>
       <div class="row justify-content-center ">
-
-        <% @followe_ranks.each_with_index do |user, i| %>
+        <% last_follower_count = nil %>
+        <% rank = 0 %>
+        <% @follower_ranks.each do |user| %>
+        <% if user.followers.count != last_follower_count %>
+            <% rank += 1 %>
+          <% end %>
+          <% last_follower_count = user.followers.count %>
         <div class="card my-1 col-10">
           <div class="card-body text-center p-2">
-
-            <h6 class="mb-1"><b>第<%= i+1 %>位</b></h6>
+            <h6 class="mb-1"><b>第<%= rank %>位</b></h6>
             <span><%= image_tag user.get_profile_image(30,30) %></span>
             <p class="mb-0"><%= link_to user.name,user_path(user.id) %></p>
             <p><i class="fa-solid fa-users"></i><%= user.followers.count %></p>
-
+          </div>
         </div>
-      </div>
         <% end %>
-
-
       </div>
-
-      <!--ここまでフォロワーランキング-->
+      <!--↑ここまでフォロワーランキング-->
     </div>
-    <!--ここまで右のBOX-->
-
+    <!--↑ここまで右のBOX-->
   </div>
-
 </div>
-
-
