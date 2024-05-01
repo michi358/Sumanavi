@@ -159,8 +159,6 @@
               <p><i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %></p>
             </div>
           </div>
-          <!--３つの投稿まででループを終了する-->
-          <% break if rank >= 3 %>
         <% end %>
       </div>
       <!--↑ここまでいいねランキング-->
@@ -172,8 +170,8 @@
         <% last_follower_count = nil %>
         <% rank = 0 %>
         <% @follower_ranks.each do |user| %>
-        <% if user.followers.count != last_follower_count %>
-            <% rank += 1 %>
+          <% if user.followers.count != last_follower_count %>
+              <% rank += 1 %>
           <% end %>
           <% last_follower_count = user.followers.count %>
         <div class="card my-1 col-10">
