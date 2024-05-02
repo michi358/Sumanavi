@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <script src="https://kit.fontawesome.com/4c6fe6cfc8.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -21,8 +20,30 @@
         <% flash.each do |message_type, message| %>
           <div class="flash-message <%= message_type %>"><%= message %></div>
         <% end %>
-      
-        <%= yield %>
+      <%= yield %>
+      <!--topに戻る-->
+      　<a href="#top" class="scroll-top-btn">
+      　　<i class="fas fa-chevron-circle-up" data-toggle=tooltip data-placement="bottom" title="最上部へ移動"></i>
+      　</a>
+      　<script>
+      　  $(document).ready(function() {
+            // スクロールトップボタンをクリックしたときの処理
+            $('.scroll-top-btn').click(function(e) {
+              e.preventDefault(); 
+              $('html, body').animate({ scrollTop: 0 }, 'slow'); // ページトップへスクロール
+            });
+          
+            // ページが100ピクセルまでスクロールされたらボタンを表示
+            $(window).scroll(function() {
+              if ($(this).scrollTop() > 100) {
+                $('.scroll-top-btn').fadeIn();
+              } else {
+                $('.scroll-top-btn').fadeOut();
+              }
+            });
+          });
+      　</script>
+      <!--↑ここまでtopに戻る-->
     </div>
     </main>
     <%= render 'layouts/footer' %>

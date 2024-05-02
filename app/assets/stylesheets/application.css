@@ -15,6 +15,7 @@ footer{
   background-color: #afafb0;
 }
 
+/*topの画像スライド*/
 .swiper-slide img {
   width: 100%;  /* 幅を100%に設定 */
   height: auto; /* 高さを自動調整 */
@@ -22,6 +23,7 @@ footer{
   object-position: center;  /* 画像の位置を中央に設定 */
 }
 
+/*吹き出し*/
 .balloon {
     position: relative;
     padding: 1rem 1rem 1rem 1.5rem;
@@ -30,7 +32,6 @@ footer{
     color: white;
     font-weight: bold;
     width: 100%;
-    
 }
 
 .balloon:before {
@@ -46,17 +47,21 @@ footer{
     content: "";
 }
 
+/*aboutページの画像サイズ*/
 .about_image{
   width: 100vw; /* 最大幅を指定 */
   height: auto;
 }
 
+/*aboutページ文字の装飾*/
 .box{
   position: relative;
 }
+
 .box_inner{
   padding: 1em;
 }
+
 .box:before,
 .box:after{
   content: "";
@@ -64,24 +69,29 @@ footer{
   height: 4em;
   position: absolute;
 }
+
 .box::before{
   border-top: 2px solid #0094D6;
   border-left: 2px solid #0094D6;
 }
+
 .box::after{
   border-bottom: 2px solid #0094D6;
   border-right: 2px solid #0094D6;
   right: 0;
   bottom: 0;
 }
+
 .box h3{
   margin: 0 0 .5em;
 }
+
 .box h3:first-letter{
   font-size: 1.4em;
   color: #0094D6;
 }
 
+/*aboutページ会員登録リンクの装飾*/
 .registration {
   position: relative;
   color: #333;
@@ -89,6 +99,7 @@ footer{
   margin: 47px 0;
   text-shadow: 0 0 2px white;
 }
+
 .registration:before {
   content: "";
   position: absolute;
@@ -101,4 +112,34 @@ footer{
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
   z-index: -1;
+}
+
+/*topに戻るスクロールボタン*/
+.scroll-top-btn {
+  display: none; /* ボタンを初めは非表示に */
+  position: fixed; /* ボタンを画面に固定 */
+  bottom: 5%; /* 画面の下からの位置 */
+  right: 3%; /* 画面の右からの位置 */
+  width: 40px; /* ボタンの幅 */
+  height: 40px; /* ボタンの高さ */
+  background-color: #82cddd; /* ボタンの背景色 */
+  border-radius: 50%; /* ボタンの角を丸くする */
+  display: flex; /* ボタン内の要素を横並びに配置 */
+  align-items: center; /* ボタン内の要素を縦方向中央に配置 */
+  justify-content: center; /* ボタン内の要素を横方向中央に配置 */
+  flex-direction: column-reverse;
+  color: #fff; /* テキストの色を白に設定 */
+  font-size: 24px; /* テキストのフォントサイズ */
+  text-decoration: none; /* テキストの下線を削除 */
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* ホバー時のトランジション効果の設定 */
+  z-index: 9999; /* ボタンを最前面に */
+}
+.fas fa-chevron-circle-up{
+  text-align: center;
+}
+.scroll-top-btn:hover {
+  background-color: #82cddd; /* ホバー時の背景色変更 */
+  text-decoration: none; /* テキストの下線を削除 */
+  color: #fff; /* ホバー時のテキストの色変更 */
+  transform: scale(1.1); /* ホバー時の拡大率変更 */
 }
