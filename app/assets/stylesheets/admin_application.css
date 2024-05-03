@@ -39,7 +39,32 @@ footer{
     content: "";
 }
 
-.about_image{
-  width: 100vw; /* 最大幅を指定 */
-  height: auto;
+/*topに戻るスクロールボタン*/
+.scroll-top-btn {
+  display: none; /* ボタンを初めは非表示に */
+  position: fixed; /* ボタンを画面に固定 */
+  bottom: 5%; /* 画面の下からの位置 */
+  right: 3%; /* 画面の右からの位置 */
+  width: 40px; /* ボタンの幅 */
+  height: 40px; /* ボタンの高さ */
+  background-color: #fff799; /* ボタンの背景色 */
+  border-radius: 50%; /* ボタンの角を丸くする */
+  display: flex; /* ボタン内の要素を横並びに配置 */
+  align-items: center; /* ボタン内の要素を縦方向中央に配置 */
+  justify-content: center; /* ボタン内の要素を横方向中央に配置 */
+  flex-direction: column-reverse;
+  color: #fff; /* テキストの色を白に設定 */
+  font-size: 24px; /* テキストのフォントサイズ */
+  text-decoration: none; /* テキストの下線を削除 */
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* ホバー時のトランジション効果の設定 */
+  z-index: 9999; /* ボタンを最前面に */
+}
+.fas fa-chevron-circle-up{
+  text-align: center;
+}
+.scroll-top-btn:hover {
+  background-color: #fff799; /* ホバー時の背景色変更 */
+  text-decoration: none; /* テキストの下線を削除 */
+  color: #fff; /* ホバー時のテキストの色変更 */
+  transform: scale(1.1); /* ホバー時の拡大率変更 */
 }
