@@ -5,7 +5,9 @@
       <h3><%= @post.title %></h3>
       <p>
         ユーザー名：<%= link_to @post.user.name, user_path(@post.user_id) %>
-        <%= render "public/relationships/btn", user: @user, options: { button_size: "sm", class: "" } %>
+        <span id= "follow_btn_<%= @post.user.id %>">
+          <%= render "public/relationships/btn", user: @user, options: { button_size: "sm", class: "" } %>
+        </span>
       </p>
       <p>投稿日：<%= l @post.created_at, format: :time %></p>
       <p>カテゴリー：<%= link_to @post.genre.name, genre_search_path(genre_id: @post.genre.id), method: :get %></p>

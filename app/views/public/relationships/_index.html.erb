@@ -7,10 +7,14 @@
             <div class="card-body text-center">
               <%= image_tag user.get_profile_image(30, 30), class: "rounded-circle mb-2" %>
               <h5 class="card-title"><%= link_to user.name, user_path(user) %></h5>
-              <p class="card-text mb-0">フォロワー数: <%= user.followers.count %></p>
-              <p class="card-text mb-0">フォロー数: <%= user.followings.count %></p>
+              <!--フォローフォロワー数カウント,非同期通信-->
+              <div id= "follow_count_<%= user.id %>">
+                <%= render "public/relationships/follow_count", user: user %>
+              </div>
               <p class="card-text">投稿数: <%= user.posts.published.count %></p>
-              <%= render "public/relationships/btn", user: user, options: { button_size: "sm", class: "" } %>
+              <div id= "follow_btn_<%= user.id %>">
+                <%= render "public/relationships/btn", user: user, options: { class: "" } %>
+              </div>
             </div>
           </div>
         </div>

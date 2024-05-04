@@ -6,10 +6,15 @@
     <div class="col-10 text-center">
       <%= image_tag @user.get_profile_image(100,100) %><br>
       <h5><%= @user.name %></h5><br>
-      <p class="mb-0">フォロー中：<%= link_to @user.followings.count, user_followings_path(@user) %></p><br>
-      <p class="mb-0">フォロワー：<%= link_to @user.followers.count, user_followers_path(@user) %></p><br>
+      <!--フォローフォロワー数カウント,非同期通信-->
+      <div id= "follow_count_<%= @user.id %>">
+        <%= render "public/relationships/follow_count", user: @user %>
+      </div>
       <div class="my-1">
-        <%= render "public/relationships/btn", user: @user, options: { class: ""} %>
+        <!--フォローボタン,非同期通信-->
+        <div id= "follow_btn_<%= @user.id %>">
+          <%= render "public/relationships/btn", user: @user, options: { class: ""} %>
+        </div>
         <% if @user == current_user && !@user.guest_user? %>
           <%= link_to "登録情報の編集はこちら", edit_user_path(@user.id), class:"btn btn-outline-info" %>
         <% end %>

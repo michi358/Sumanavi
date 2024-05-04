@@ -1,0 +1,7 @@
+<% if current_page?(user_path(user)) %>
+  <p class="mb-0">フォロー中：<%= link_to user.followings.count, user_followings_path(user) %></p><br>
+  <p class="mb-0">フォロワー：<%= link_to user.followers.count, user_followers_path(user) %></p><br>
+<% else %>
+  <p class="card-text mb-0">フォロワー数: <%= user.followers.count %></p>
+  <p class="card-text mb-0">フォロー数: <%= user.followings.count %></p>
+<% end %>

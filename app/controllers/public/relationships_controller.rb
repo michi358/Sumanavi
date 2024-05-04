@@ -2,15 +2,23 @@ class Public::RelationshipsController < ApplicationController
   
   
   def create
-    user = User.find(params[:user_id])
-    current_user.follow(user)
-    redirect_to request.referer
+    @user = User.find(params[:user_id])
+    current_user.follow(@user)
+    if request.referer&.include?("users")
+      @options= { class: "" }
+    else
+      @options= { button_size: "sm", class: "" }
+    end
   end
   
   def destroy
-    user = User.find(params[:user_id])
-    current_user.unfollow(user)
-    redirect_to  request.referer
+    @user = User.find(params[:user_id])
+    current_user.unfollow(@user)
+     if request.referer&.include?("users")
+      @options= { class: "" }
+    else
+      @options= { button_size: "sm", class: "" }
+    end
   end
   # フォロー中
   def followings
