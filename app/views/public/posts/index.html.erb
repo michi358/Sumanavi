@@ -9,7 +9,7 @@
         <%= link_to '新しい順', posts_path(latest: "true") %>
         |<%= link_to '古い順', posts_path(old: "true") %>
       </div>
-      <!--ここまでソートのリンク-->
+      <!--↑ここまでソートのリンク-->
       <%= render 'admin/posts/index', posts: @posts %>
     </div>
   </div>
