@@ -8,7 +8,7 @@
       <h5><%= @user.name %></h5><br>
       <!--フォローフォロワー数カウント,非同期通信-->
       <div id= "follow_count_<%= @user.id %>">
-        <%= render "public/relationships/follow_count", user: @user %>
+        <%= render "public/relationships/follow_count", user: @user,link_flg: false %>
       </div>
       <div class="my-1">
         <!--フォローボタン,非同期通信-->

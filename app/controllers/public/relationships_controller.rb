@@ -14,7 +14,7 @@ class Public::RelationshipsController < ApplicationController
   def destroy
     @user = User.find(params[:user_id])
     current_user.unfollow(@user)
-     if request.referer&.include?("users")
+    if request.referer&.include?("users")
       @options= { class: "" }
     else
       @options= { button_size: "sm", class: "" }

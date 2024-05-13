@@ -1,2 +1,7 @@
-$("#follow_btn_<%= @user.id %>").html("<%= j(render 'public/relationships/btn', user: @user, options: @options) %>");
-$("#follow_count_<%= @user.id %>").html("<%= j(render 'public/relationships/follow_count', user: @user ) %>");
+<% if request.referer&.include?('/followers') || request.referer&.include?('/followings')  %>
+$("#follow_btn_<%= @user.id %>").html("<%= j(render 'public/relationships/btn', user: @user, options:@options ) %>");
+$("#follow_count_<%= @user.id %>").html("<%= j(render 'public/relationships/follow_count', user: @user, link_flg: true ) %>");
+<% else %>
+$("#follow_btn_<%= @user.id %>").html("<%= j(render 'public/relationships/btn', user: @user, options:@options ) %>");
+$("#follow_count_<%= @user.id %>").html("<%= j(render 'public/relationships/follow_count', user: @user, link_flg: false ) %>");
+<% end %>

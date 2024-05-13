@@ -9,7 +9,7 @@
               <h5 class="card-title"><%= link_to user.name, user_path(user) %></h5>
               <!--フォローフォロワー数カウント,非同期通信-->
               <div id= "follow_count_<%= user.id %>">
-                <%= render "public/relationships/follow_count", user: user %>
+                <%= render "public/relationships/follow_count", user: user, link_flg: true %>
               </div>
               <p class="card-text">投稿数: <%= user.posts.published.count %></p>
               <div id= "follow_btn_<%= user.id %>">
