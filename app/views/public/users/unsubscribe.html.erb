@@ -4,8 +4,8 @@
       <div class="shadow-lg my-3 p-3 rounded" style="background-color:white">
         <h3 class="text-center">本当に退会しますか？</h3>
         <p class="text-center">
-          退会すると、再度同じメールアドレスではログインできなくなります。<br>
-          会員登録情報や投稿、いいねした投稿の確認などができなくなります。<br>
+          退会するとログインができなくなります。<br>
+          また会員情報やこれまでの投稿など全て削除されます。<br>
           退会する場合は、「退会する」をクリックしてください。
         </p>
         <div class="row justify-content-center">
@@ -13,7 +13,7 @@
             <%= link_to "退会しない", user_path(@user.id), class: "btn btn-primary btn-block" %>
           </div>
           <div class="col-6 text-center">
-            <%= link_to "退会する", withdraw_users_path, method: :patch, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger btn-block" %>
+            <%= link_to "退会する", user_path(current_user), method: :delete, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger btn-block" %>
           </div>
         </div>
       </div>

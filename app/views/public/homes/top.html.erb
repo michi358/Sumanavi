@@ -146,7 +146,6 @@
       <div class="row justify-content-center">
         <% last_favorite_count = nil %>
         <% rank = 0 %>
-        <!--iは配列内でのインデックス（0,1,2が割り当てられる）-->
         <% @post_favorite_ranks.each do |post| %>
           <% if post.favorites.count != last_favorite_count %>
             <% rank += 1 %>

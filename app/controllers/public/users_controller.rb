@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user!, only:[:edit,:update,:unsubscribe,:withdrow]
+  before_action :authenticate_user!, only:[:edit,:update,:unsubscribe,:destroy]
   before_action :is_matching_login_user, only:[:edit,:update]
   before_action :ensure_guest_user, only:[:edit,:update]
 
@@ -35,7 +35,6 @@ class Public::UsersController < ApplicationController
       flash.now[:alert] = "編集に失敗しました。"
       render :edit
     end
-
   end
 
   def unsubscribe
@@ -53,6 +52,18 @@ class Public::UsersController < ApplicationController
         redirect_to user_path(current_user)
       end
     @user.update(is_active: false)
+    reset_session
+    flash[:notice] = "退会処理が完了いたしました。ご利用ありがとうございました。"
+    redirect_to root_path
+  end
+
+  def destroy
+    @user = current_user
+      if @user.guest_user?
+        flash[:alert] = "ゲストユーザーではアクセス権限がありません"
+        redirect_to user_path(current_user)
+      end
+    @user.destroy
     reset_session
     flash[:notice] = "退会処理が完了いたしました。ご利用ありがとうございました。"
     redirect_to root_path
