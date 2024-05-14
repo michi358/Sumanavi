@@ -34,7 +34,8 @@
 ・スマートフォンに関する情報を投稿したい時
 ​
 ## 設計書
-・AWS構成図
+・AWS構成図　　　
+
 <img width="494" alt="AWS構成図" src="https://github.com/michi358/Sumanavi/assets/156744214/a60a09ef-34df-4041-9904-63a7e73b6b44">
 
 ・ER図
