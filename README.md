@@ -38,6 +38,7 @@
 
 <img width="494" alt="AWS構成図" src="https://github.com/michi358/Sumanavi/assets/156744214/a60a09ef-34df-4041-9904-63a7e73b6b44">
 
+
 ・ER図　　　
 ​<img width="1161" alt="ER図（スマなび）" src="https://github.com/michi358/Sumanavi/assets/156744214/d648894f-4904-4e6e-bb86-07c22f06ea63">
 
