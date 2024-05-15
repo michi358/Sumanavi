@@ -193,3 +193,10 @@ ja:
       short: "%m/%d %H:%M"
       time: "%Y年%m月%d日(%a) %H:%M"
     pm: 午後
+  views:
+    pagination:
+      first: "最初"
+      last: "最後"
+      previous: "前"
+      next: "次"
+      truncate: "..."

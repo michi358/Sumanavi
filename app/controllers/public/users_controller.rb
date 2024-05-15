@@ -7,18 +7,37 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     # ソート機能
     if params[:latest]
-      @posts = @user.posts.published.latest.page(params[:page]).per(10)
+      @posts = @user.posts.published.latest.page(params[:mypost]).per(5)
     elsif params[:old]
-      @posts = @user.posts.published.old.page(params[:page]).per(10)
+      @posts = @user.posts.published.old.page(params[:mypost]).per(5)
     else
-      @posts = @user.posts.published.all.page(params[:page]).per(10)
+      @posts = @user.posts.published.all.page(params[:mypost]).per(5)
     end
 
     if user_signed_in? && current_user == @user
-      @following_posts = Post.published.includes(:user).where(user_id: current_user.following_ids)
-      @favorite_posts = Post.published.joins(:favorites).where(favorites: { user_id: current_user.id })
-      @draft_posts = current_user.posts.draft.all.page(params[:page]).per(10)
-      @unpublished_posts = current_user.posts.unpublished.all.page(params[:page]).per(10)
+      if params[:latest_following]
+        @following_posts = Post.published.includes(:user).where(user_id: current_user.following_ids).latest.page(params[:following_posts]).per(5)
+      elsif params[:old_following]
+        @following_posts = Post.published.includes(:user).where(user_id: current_user.following_ids).old.page(params[:following_posts]).per(5)
+      else
+        @following_posts = Post.published.includes(:user).where(user_id: current_user.following_ids).all.page(params[:following_posts]).per(5)
+      end
+
+      if params[:latest_favorites]
+        @favorite_posts = Post.published.joins(:favorites).where(favorites: { user_id: current_user.id }).latest.page(params[:favorite_posts]).per(5)
+      elsif params[:old_favorites]
+        @favorite_posts = Post.published.joins(:favorites).where(favorites: { user_id: current_user.id }).old.page(params[:favorite_posts]).per(5)
+      else
+        @favorite_posts = Post.published.joins(:favorites).where(favorites: { user_id: current_user.id }).all.page(params[:favorite_posts]).per(5)
+      end
+
+      @draft_posts = current_user.posts.draft.all.page(params[:draft_posts]).per(10)
+      @unpublished_posts = current_user.posts.unpublished.all.page(params[:draft_posts]).per(10)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 

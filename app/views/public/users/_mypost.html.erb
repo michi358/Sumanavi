@@ -4,8 +4,8 @@
 <div class="col text-center">
   <!--ソートのリンク-->
   <div class="col-12 text-right">
-    <%= link_to '新しい順', user_path(latest: "true") %>
-    |<%= link_to '古い順', user_path(old: "true") %>
+    <%= link_to '新しい順', user_path(latest: "true"),remote: true %>
+    |<%= link_to '古い順', user_path(old: "true") ,remote: true %>
   </div>
   <!--ここまでソートのリンク-->
   <div class="container">
@@ -51,8 +51,19 @@
         </div>
       <% end %>
     </div>
-    <div class="row justify-content-center">
-      <%= paginate posts %>
+    <div class="row justify-content-center <%= paginate_name %>">
+      <%= paginate posts,
+                    remote: true,
+                    param_name: paginate_name
+      %>
     </div>
   </div>
 </div>
+
+<script>
+  $('.<%= paginate_name %> > nav > ul > li.page-item > a').each(function() {
+    if ($(this).attr('href') != undefined && $(this).attr('href').match(/\?/) === null) {
+      $(this).attr('href', '?<%= paginate_name %>=1')
+    }
+  })
+</script>

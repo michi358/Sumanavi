@@ -1,0 +1,10 @@
+<% if params[:mypost] || params[:latest] || params[:old] %>
+  $('#mypost').html('<%= j render partial: "mypost", locals: { posts: @posts, paginate_name: 'mypost' } %>');
+  $('#pagination').html('<%= j(paginate(@posts, remote: true, class: "pagination")) %>');
+<% elsif params[:following_posts] || params[:latest_following] || params[:old_following]%>
+  $('#following_post_index').html('<%= j render partial: "post_index", locals: { post_index: @following_posts, paginate_name: 'following_posts' } %>');
+  $('#pagination').html('<%= j(paginate(@following_posts, remote: true, class: "pagination")) %>');
+<% elsif params[:favorite_posts] || params[:latest_favorites] || params[:old_favorites]%>
+  $('#favorite_post_index').html('<%= j render partial: "post_index", locals: { post_index: @favorite_posts } %>');
+  $('#pagination').html('<%= j(paginate(@favrite_posts, remote: true, class: "pagination")) %>');
+<% end %>

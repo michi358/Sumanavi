@@ -6,16 +6,16 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
-  
+
   validates :title, presence: true
   validates :content, presence: true
   # 投稿ステータス　0:公開,1:下書き,2:非公開
   enum status: { published: 0, draft: 1,  unpublished: 2 }
-  
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
+
   def save_tags(tags)
   # タグが存在していれば、タグの名前を配列として全て取得
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
@@ -35,7 +35,7 @@ class Post < ApplicationRecord
       self.tags << tag
     end
   end
-  
+
   # 検索方法分岐
   def self.search_for(content, method)
     if method == 'perfect'
@@ -46,11 +46,12 @@ class Post < ApplicationRecord
       Post.where('title LIKE ?', '%' + content)
     else
       Post.where('title LIKE ?', '%' + content + '%')
-    end  
+    end
   end
-  
+
   # ソート機能
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}
-  
+
+
 end

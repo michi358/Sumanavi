@@ -1,5 +1,6 @@
 <!--renderの時　@post_index -->
-<div class="col mx-auto text-center">
+<div class="col text-center">
+
   <div class="container">
     <div class="row">
       <% if post_index.exists? %>
@@ -49,5 +50,19 @@
         </div>
       <% end %>
     </div>
+    <div class="row justify-content-center <%= paginate_name %>">
+      <%= paginate post_index,
+                    remote: true,
+                    param_name: paginate_name
+      %>
+    </div>
   </div>
 </div>
+
+<script>
+  $('.<%= paginate_name %> > nav > ul > li.page-item > a').each(function() {
+    if ($(this).attr('href') != undefined && $(this).attr('href').match(/\?/) === null) {
+      $(this).attr('href', '?<%= paginate_name %>=1')
+    }
+  })
+</script>

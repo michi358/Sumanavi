@@ -50,35 +50,53 @@
           <div class="col-12 text-center">
             <h3 class="m-3">投稿一覧&nbsp;（全<%= @posts.total_count %>件）</h3>
           </div>
-          <%= render 'mypost', posts: @posts %>
+          <div id="mypost">
+            <%= render 'mypost', posts: @posts, paginate_name: 'mypost' %>
+          </div>
         </div>
         <!-- "フォロー中ユーザーの投稿"のコンテンツ -->
         <div class="tab-pane fade" id="FollowingsPost" role="tabpanel" aria-labelledby="FollowingsPost-tab">
           <div class="col-12 text-center">
-            <h3 class="m-3">投稿一覧&nbsp;（<%= @following_posts.count %>件）</h3>
+            <h3 class="m-3">投稿一覧&nbsp;（全<%= @following_posts.total_count %>件）</h3>
           </div>
-            <%= render 'post_index', post_index: @following_posts %>
+          <!--ソートのリンク-->
+          <div class="col-12 text-right">
+            <%= link_to '新しい順', user_path(latest_following: "true"),remote: true %>
+            |<%= link_to '古い順', user_path(old_following: "true") ,remote: true %>
+          </div>
+          <!--ここまでソートのリンク-->
+          <div id="following_post_index">
+            <%= render 'post_index', post_index: @following_posts, paginate_name: 'following_posts' %>
+          </div>
         </div>
         <!-- "いいねした投稿"のコンテンツ -->
         <div class="tab-pane fade" id="FavoritesPost" role="tabpanel" aria-labelledby="FavoritesPost-tab">
           <div class="col-12 text-center">
-            <h3 class="m-3">投稿一覧&nbsp;（<%= @favorite_posts.count %>件）</h3>
+            <h3 class="m-3">投稿一覧&nbsp;（全<%= @favorite_posts.total_count %>件）</h3>
           </div>
-            <%= render 'post_index', post_index: @favorite_posts %>
+          <!--ソートのリンク-->
+          <div class="col-12 text-right">
+            <%= link_to '新しい順', user_path(latest_favorites: "true"),remote: true %>
+            |<%= link_to '古い順', user_path(old_favorites: "true") ,remote: true %>
+          </div>
+          <!--ここまでソートのリンク-->
+          <div id="favorite_post_index">
+            <%= render 'post_index', post_index: @favorite_posts, paginate_name: 'favorite_posts' %>
+          </div>
         </div>
         <!-- "下書き一覧"のコンテンツ -->
         <div class="tab-pane fade" id="DraftPost" role="tabpanel" aria-labelledby="DraftPost-tab">
           <div class="col-12 text-center">
             <h3 class="m-3">下書き一覧&nbsp;（<%= @draft_posts.count %>件）</h3>
           </div>
-            <%= render 'post_index', post_index: @draft_posts %>
+            <%= render 'post_index', post_index: @draft_posts, paginate_name: 'draft_posts' %>
         </div>
         <!-- "非公開一覧"のコンテンツ -->
         <div class="tab-pane fade" id="UnpublishedPost" role="tabpanel" aria-labelledby="UnpublishedPost-tab">
           <div class="col-12 text-center">
             <h3 class="m-3">下書き一覧&nbsp;（<%= @unpublished_posts.count %>件）</h3>
           </div>
-            <%= render 'post_index', post_index: @unpublished_posts %>
+            <%= render 'post_index', post_index: @unpublished_posts, paginate_name: 'unpublished_posts' %>
         </div>
       </div>
     </div>
