@@ -5,6 +5,6 @@
   $('#following_post_index').html('<%= j render partial: "post_index", locals: { post_index: @following_posts, paginate_name: 'following_posts' } %>');
   $('#pagination').html('<%= j(paginate(@following_posts, remote: true, class: "pagination")) %>');
 <% elsif params[:favorite_posts] || params[:latest_favorites] || params[:old_favorites]%>
-  $('#favorite_post_index').html('<%= j render partial: "post_index", locals: { post_index: @favorite_posts } %>');
-  $('#pagination').html('<%= j(paginate(@favrite_posts, remote: true, class: "pagination")) %>');
+  $('#favorite_post_index').html('<%= j render partial: "post_index", locals: { post_index: @favorite_posts, paginate_name: 'favorite_posts' } %>');
+  $('#pagination').html('<%= j(paginate(@favorite_posts, remote: true, class: "pagination")) %>');
 <% end %>

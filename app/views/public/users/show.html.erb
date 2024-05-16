@@ -59,12 +59,12 @@
           <div class="col-12 text-center">
             <h3 class="m-3">投稿一覧&nbsp;（全<%= @following_posts.total_count %>件）</h3>
           </div>
-          <!--ソートのリンク-->
+          <!--フォロー中ソートのリンク-->
           <div class="col-12 text-right">
             <%= link_to '新しい順', user_path(latest_following: "true"),remote: true %>
             |<%= link_to '古い順', user_path(old_following: "true") ,remote: true %>
           </div>
-          <!--ここまでソートのリンク-->
+          <!--ここまでフォロー中ソートのリンク-->
           <div id="following_post_index">
             <%= render 'post_index', post_index: @following_posts, paginate_name: 'following_posts' %>
           </div>
@@ -74,12 +74,13 @@
           <div class="col-12 text-center">
             <h3 class="m-3">投稿一覧&nbsp;（全<%= @favorite_posts.total_count %>件）</h3>
           </div>
-          <!--ソートのリンク-->
+          <!--いいねソートのリンク-->
           <div class="col-12 text-right">
             <%= link_to '新しい順', user_path(latest_favorites: "true"),remote: true %>
             |<%= link_to '古い順', user_path(old_favorites: "true") ,remote: true %>
+
           </div>
-          <!--ここまでソートのリンク-->
+          <!--ここまでいいねソートのリンク-->
           <div id="favorite_post_index">
             <%= render 'post_index', post_index: @favorite_posts, paginate_name: 'favorite_posts' %>
           </div>
