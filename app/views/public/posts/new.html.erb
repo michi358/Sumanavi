@@ -23,7 +23,7 @@
           <%= f.text_field :name,value: @tag_list, class: 'form-control' %>
         </div>
         <div class="form-group text-left">
-          <label for="inputContent">投稿ステータス</label>
+          <label for="inputContent">公開範囲</label>
           <%= f.radio_button :status, :published, checked: true %>
           <%= f.label :status_published, "公開" %>
           <%= f.radio_button :status, :draft %>

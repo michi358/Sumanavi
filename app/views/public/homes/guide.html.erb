@@ -1,0 +1,196 @@
+<%= stylesheet_link_tag "application" %>
+
+<div class="container">
+  <h3 class="m-3">スマなびのガイド</h3>
+  <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
+    <div class="col-12">
+      <ul class="nav nav-tabs" role="guide">
+        <li class="nav-item">
+          <a class="nav-link active" id="Operation-tab" data-toggle="tab" href="#Operation" role="tab" aria-controls="Operation" aria-selected="false">基本操作</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="Mypage-tab" data-toggle="tab" href="#Mypage" role="tab" aria-controls="Mypage" aria-selected="false">マイページについて</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="Post-tab" data-toggle="tab" href="#Post" role="tab" aria-controls="Post" aria-selected="false">投稿について</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" id="Connect-tab" data-toggle="tab" href="#Connect" role="tab" aria-controls="Connect" aria-selected="false">つながる</a>
+        </li>
+      </ul>
+    </div>
+    <div class="tab-content col-12">
+      <!-- "基本操作"のコンテンツ -->
+      <div class="tab-pane fade show active" id="Operation" role="tabpanel" aria-labelledby="Operation-tab">
+        <div class="col-12 text-center">
+          <h3 class="m-3">基本操作</h3>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-center">
+              <div class="box-design text-left">
+                <h5 class="box-design-ttl">TOPに戻る</h5>
+                <p class="my-1 pt-3">
+                  ・各ページの一番左上にある、ロゴをクリックする。<br>
+                  <%= image_tag 'guide/logo.png', :height => '100' %><br>
+                  ・ページ最上部にある「<i class="fa-solid fa-house"></i>TOP」をクリックする。<br>
+                  「<i class="fa-solid fa-house"></i>TOP」が表示されていない場合は、<br>
+                  「<i class="fa-solid fa-bars"></i>」をクリックし「<i class="fa-solid fa-house"></i>TOP」をクリックする。
+                </p>
+              </div>
+              <div class="box-design text-left">
+                <h5 class="box-design-ttl"><%= image_tag 'guide/up_btn', size:"30x30"%>ボタン</h3>
+                <p class="my-1 pt-3">
+                  ・<%= image_tag 'guide/up_btn', size:"30x30"%>をクリックすると、各ページの最上部に移動することができます。
+                </p>
+              </div>
+              <div class="box-design text-left">
+                <h5 class="box-design-ttl">会員登録をすると使える機能</h5>
+                <p class="my-1 pt-3">
+                  ・投稿<br>
+                  <i class="fa-solid fa-right-long"></i>自分が知りたい情報をリクエストとして、投稿することもできます！<br>
+                  ・いいね<br>
+                  <i class="fa-solid fa-right-long"></i>自分がいいねをした投稿は、一覧で見ることができるので後で見返す時に便利です！<br>
+                  ・コメント、フォロー機能<br>
+                  <i class="fa-solid fa-right-long"></i>投稿にコメントをしたり、気に入った投稿者をフォローすることでそのユーザーの投稿を見つけやすくなります！<br>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- "マイページについて"のコンテンツ -->
+      <div class="tab-pane fade" id="Mypage" role="tabpanel" aria-labelledby="Mypage-tab">
+        <div class="col-12 text-center">
+          <h3 class="m-3">マイページのについて</h3>
+          <p>※ログインが必要です</p>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-center">
+              <p>まずは、ページ最上部にある「<i class="fa-solid fa-user"></i>マイページ」をクリック</p>
+              <%= image_tag "guide/mypage.png", width:"100%" %>
+              
+              <div class="box-design text-left">
+                <h5 class="box-design-ttl">マイページでできること</h5>
+                <p class="pt-3">
+                  1. フォロー中ユーザー、フォロワーの一覧をみる<br>
+                  <i class="fa-solid fa-right-long"></i>フォロー中、フォロワー横の数字をクリックする
+                </p>
+                <p>
+                  2. 登録情報の編集<br>
+                  <i class="fa-solid fa-right-long"></i>ユーザー名、メールアドレスの変更<br>
+                  <i class="fa-solid fa-right-long"></i>退会をする場合<br>
+                  ※ 退会をすると、再度新規登録をしなければログインができなくなり、
+                  登録情報の他にこれまでの投稿、いいねした投稿、フォロワーなどの情報がすべて削除されます。<br>
+                  ※ゲストログインでは、登録情報の編集ボタンは表示されません。
+                </p>
+                <p>
+                  3. 過去の投稿一覧をみる<br>
+                  <i class="fa-solid fa-right-long"></i>「自分の投稿」をクリックすると一覧が表示されます。
+                </p>
+                </p>
+                  4. フォローしたユーザーの投稿をみる<br>
+                  <i class="fa-solid fa-right-long"></i>「フォロー中ユーザー投稿」をクリックすると、フォローしたユーザーの投稿一覧が表示されます。
+                </p>
+                  5. いいねした投稿を見る<br>
+                  <i class="fa-solid fa-right-long"></i>「いいねした投稿」をクリックすると、いいねした一覧が表示されます。
+                </p>
+                <p>
+                  6. 下書き、非公開の投稿<br>
+                  <i class="fa-solid fa-right-long"></i>「下書き」、「非公開の投稿」をクリックすると、その投稿一覧が表示されます。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- "投稿について"のコンテンツ -->
+      <div class="tab-pane fade" id="Post" role="tabpanel" aria-labelledby="Post-tab">
+        <div class="col-12 text-center">
+          <h3 class="m-3">投稿について</h3>
+          <p>※ログインが必要です</p>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-center">
+              <div class="box-design text-left">
+                <h5 class="box-design-ttl">新規投稿をする</h5>
+                <p class="my-1 pt-3">
+                  1.ページ最上部の、「<i class="fa-solid fa-pen-to-square"></i>新規投稿」をクリックする。<br>
+                  2.タイトル、本文、カテゴリー、公開範囲の選択は必須です。<br>
+                  3.「投稿」をクリックすると、投稿が完了します。
+                </p>
+              </div>
+              <div class="box-design text-left">
+                <h5 class="box-design-ttl">編集、削除をする</h5>
+                <p class="my-1 pt-3">
+                  編集や削除を行いたい投稿を表示すると、ページ下部に下記ボタンが表示されます。<br>
+                  編集にて、公開範囲の変更をすることも可能です。
+                </p>
+                <div class="text-center">
+                  <%= image_tag "guide/post_btn", width:"40%",class:"text-center" %>
+                </div>
+              </div>
+              <div class="box-design text-left">
+                <h5 class="box-design-ttl">入力フォームのアイコンについて</h3>
+                <div class="my-1 text-center">
+                  <%= image_tag "guide/actiontext.png", width:"100%" %>
+                </div>
+                <p class="pt-3">
+                  1.太字にする<br>
+                  2.斜体にする<br>
+                  3.ハイパーリンクの追加<br>
+                  4.画像の添付<br>
+                  5.直前の操作を元に戻す<br>
+                  6.直前の操作をやり直す
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- "つながる"のコンテンツ -->
+      <div class="tab-pane fade" id="Connect" role="tabpanel" aria-labelledby="Connect-tab">
+        <div class="col-12 text-center">
+          <h3 class="m-3">つながる</h3>
+          <p>※ログインが必要です</p>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-center">
+              <div class="box-design text-left">
+                <h5 class="box-design-ttl">いいね</h5>
+                <p class="my-1 pt-3">
+                  ・各投稿の下部にある、<i class="fa-regular fa-thumbs-up"></i>をクリックする。<br>
+                  クリックするいいねをしたり、取り消すことができます。<br>
+                  まだいいねをしていない時：<i class="fa-regular fa-thumbs-up"></i><br>
+                  すでにいいねをしている時：<i class="fa-solid fa-thumbs-up"></i><br>
+                  いいねをすると、マイページの「いいねした投稿」に保存され、投稿を見返したい時にも便利です！
+                </p>
+              </div>
+              <div class="box-design text-left">
+                <h5 class="box-design-ttl">コメント</h5>
+                <div class="my-1 text-center">
+                  <%= image_tag "guide/comment.png", width:"100%" %>
+                </div>
+                <p class="my-1 pt-3">
+                  ・各投稿の下部のコメント入力フォームへ入力し、「送信する」をクリックするとコメントができます。
+                </p>
+              </div>
+              <div class="box-design text-left">
+                <h5 class="box-design-ttl">フォロー</h3>
+                <p class="my-1 pt-3">
+                  ・<%= image_tag 'guide/follow_btn1.png', height:"30px" %>をクリックするとそのユーザーをフォローできます。<br>
+                  ・<%= image_tag 'guide/follow_btn2.png', height:"30px" %>をクリックするとフォローを解除できます。<br>
+                  フォローをしたユーザーの投稿は、マイページの「フォロー中ユーザーの投稿」へ表示されるようになります。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -156,3 +156,21 @@ footer{
   color: #fff; /* ホバー時のテキストの色変更 */
   transform: scale(1.1); /* ホバー時の拡大率変更 */
 }
+
+/*guideページ*/
+.box-design {
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px dashed #82cddd;
+  position: relative;
+}
+.box-design-ttl {
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  background-color: #fff;
+  padding: 0 0.5em;
+  margin: 0;
+
+  font-weight: bold;
+}

@@ -9,9 +9,6 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-        <!--2段にするためのクラス-->
-        <!--<div class="collapse navbar-collapse flex-column" id="navbarSupportedContent">-->
-
         <!--ユーザーがログイン中-->
         <% if user_signed_in? %>
           <div class="mr-5">
@@ -25,7 +22,6 @@
               <span>TOP</span>
               <% end %>
             </li>
-
             <li class="nav-item">
               <%= link_to user_path(current_user.id), class: "nav-link" do %>
               <i class="fa-solid fa-user"></i>
@@ -44,7 +40,13 @@
               <span>ログアウト</span>
               <% end %>
             </li>
-            </ul>
+            <li class="nav-item">
+              <%= link_to guide_path, class: "nav-link" do %>
+              <i class="fa-solid fa-book-open"></i>
+              <span>使い方</span>
+              <% end %>
+            </li>
+          </ul>
             <!--管理者がログイン中-->
           <% elsif admin_signed_in? %>
           <div class="mr-5">
@@ -80,6 +82,12 @@
               <% end %>
             </li>
             <li class="nav-item">
+              <%= link_to guide_path, class: "nav-link" do %>
+              <i class="fa-solid fa-book-open"></i>
+              <span>使い方</span>
+              <% end %>
+            </li>
+            <li class="nav-item">
               <%= link_to new_user_registration_path, class: "nav-link" do %>
               <i class="fa-solid fa-user-plus"></i>
               <span>新規登録</span>
@@ -94,14 +102,12 @@
             <li class="nav-item">
               <%= link_to users_guest_sign_in_path, method: :post, class: "nav-link" do %>
               <i class="fa-solid fa-hand-point-right"></i>
-              <span>ゲストログイン（閲覧用）</span>
+              <span>ゲストログイン</span>
               <% end %>
             </li>
 
           </ul>
         <% end %>
-          <!-- 検索窓 -->
-          <%= render "public/searches/search" %>
       </div>
     </div>
   </nav>

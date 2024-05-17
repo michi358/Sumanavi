@@ -26,7 +26,7 @@ class Public::PostsController < ApplicationController
     if @post.save
       @post.save_tags(tag_list)
       if status == "published"
-        flash[:notice] = "投稿が成功しました。"
+        flash[:notice] = "投稿に成功しました。"
       elsif status == "draft"
         flash[:notice] = "下書きに保存されました。"
       else
