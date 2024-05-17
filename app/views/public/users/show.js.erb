@@ -7,4 +7,10 @@
 <% elsif params[:favorite_posts] || params[:latest_favorites] || params[:old_favorites]%>
   $('#favorite_post_index').html('<%= j render partial: "post_index", locals: { post_index: @favorite_posts, paginate_name: 'favorite_posts' } %>');
   $('#pagination').html('<%= j(paginate(@favorite_posts, remote: true, class: "pagination")) %>');
+<% elsif params[:draft_posts] || params[:latest_draft] || params[:old_draft]%>
+  $('#draft_post_index').html('<%= j render partial: "post_index", locals: { post_index: @draft_posts, paginate_name: 'draft_posts' } %>');
+  $('#pagination').html('<%= j(paginate(@draft_posts, remote: true, class: "pagination")) %>');
+<% elsif params[:unpublished_posts] || params[:latest_unpublished] || params[:old_unpublished]%>
+  $('#unpublished_post_index').html('<%= j render partial: "post_index", locals: { post_index: @unpublished_posts, paginate_name: 'unpublished_posts' } %>');
+  $('#pagination').html('<%= j(paginate(@unpublished_posts, remote: true, class: "pagination")) %>');
 <% end %>

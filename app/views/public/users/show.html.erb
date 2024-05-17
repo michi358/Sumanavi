@@ -88,16 +88,30 @@
         <!-- "下書き一覧"のコンテンツ -->
         <div class="tab-pane fade" id="DraftPost" role="tabpanel" aria-labelledby="DraftPost-tab">
           <div class="col-12 text-center">
-            <h3 class="m-3">下書き一覧&nbsp;（<%= @draft_posts.count %>件）</h3>
+            <h3 class="m-3">下書き一覧&nbsp;（全<%= @draft_posts.total_count %>件）</h3>
           </div>
+          <!--下書きソートのリンク-->
+          <div class="col-12 text-right">
+            <%= link_to '新しい順', user_path(latest_draft: "true"),remote: true %>
+            |<%= link_to '古い順', user_path(old_draft: "true") ,remote: true %>
+          </div>
+          <div id="draft_post_index">
             <%= render 'post_index', post_index: @draft_posts, paginate_name: 'draft_posts' %>
+          </div>
         </div>
         <!-- "非公開一覧"のコンテンツ -->
         <div class="tab-pane fade" id="UnpublishedPost" role="tabpanel" aria-labelledby="UnpublishedPost-tab">
           <div class="col-12 text-center">
-            <h3 class="m-3">下書き一覧&nbsp;（<%= @unpublished_posts.count %>件）</h3>
+            <h3 class="m-3">非公開一覧&nbsp;（全<%= @unpublished_posts.total_count %>件）</h3>
           </div>
+          <!--非公開ソートのリンク-->
+          <div class="col-12 text-right">
+            <%= link_to '新しい順', user_path(latest_unpublished: "true"),remote: true %>
+            |<%= link_to '古い順', user_path(old_unpublished: "true") ,remote: true %>
+          </div>
+          <div id="unpublished_post_index">
             <%= render 'post_index', post_index: @unpublished_posts, paginate_name: 'unpublished_posts' %>
+          </div>
         </div>
       </div>
     </div>

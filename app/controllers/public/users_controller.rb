@@ -31,8 +31,20 @@ class Public::UsersController < ApplicationController
         @favorite_posts = Post.published.joins(:favorites).where(favorites: { user_id: current_user.id }).all.page(params[:favorite_posts]).per(5)
       end
 
-      @draft_posts = current_user.posts.draft.all.page(params[:draft_posts]).per(10)
-      @unpublished_posts = current_user.posts.unpublished.all.page(params[:draft_posts]).per(10)
+      if params[:latest_draft]
+        @draft_posts = current_user.posts.draft.latest.page(params[:draft_posts]).per(5)
+      elsif params[:old_draft]
+        @draft_posts = current_user.posts.draft.old.page(params[:draft_posts]).per(5)
+      else
+        @draft_posts = current_user.posts.draft.all.page(params[:draft_posts]).per(5)
+      end
+      if params[:latest_unpublished]
+        @unpublished_posts = current_user.posts.unpublished.latest.page(params[:unpublished_posts]).per(5)
+      elsif params[:old_unpublished]
+        @unpublished_posts = current_user.posts.unpublished.old.page(params[:unpublished_posts]).per(5)
+      else
+        @unpublished_posts = current_user.posts.unpublished.all.page(params[:unpublished_posts]).per(5)
+      end
     end
 
     respond_to do |format|
