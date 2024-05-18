@@ -21,7 +21,9 @@
                       <p class="card-text mb-0">フォロワー数: <%= user.followers.count %></p>
                       <p class="card-text mb-0">フォロー数: <%= user.followings.count %></p>
                       <p class="card-text">投稿数: <%= user.posts.count %></p>
-                      <%= render "public/relationships/btn", user: user, options: { button_size: "sm", class: "" } %>
+                      <div id= "follow_btn_<%= user.id %>">
+                        <%= render "public/relationships/btn", user: user, options: { button_size: "sm", class: "" } %>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -31,7 +33,6 @@
                 </div>
               </div>
             </div>
-              
           <!--Postの検索結果-->
           <% elsif @model == "Post" %>
             <%= render 'admin/posts/index', posts: @records %>
