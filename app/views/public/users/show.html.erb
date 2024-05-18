@@ -64,7 +64,6 @@
             <%= link_to '新しい順', user_path(latest_following: "true"),remote: true %>
             |<%= link_to '古い順', user_path(old_following: "true") ,remote: true %>
           </div>
-          <!--ここまでフォロー中ソートのリンク-->
           <div id="following_post_index">
             <%= render 'post_index', post_index: @following_posts, paginate_name: 'following_posts' %>
           </div>
@@ -78,9 +77,7 @@
           <div class="col-12 text-right">
             <%= link_to '新しい順', user_path(latest_favorites: "true"),remote: true %>
             |<%= link_to '古い順', user_path(old_favorites: "true") ,remote: true %>
-
           </div>
-          <!--ここまでいいねソートのリンク-->
           <div id="favorite_post_index">
             <%= render 'post_index', post_index: @favorite_posts, paginate_name: 'favorite_posts' %>
           </div>
@@ -116,14 +113,14 @@
       </div>
     </div>
   </div>
-    <!--ここまで ログイン中のマイページの時は、ナビバーを表示する-->
     <!--ログインユーザー以外の人のshowページの時-->
   <% else %>
     <div class="row shadow-lg my-3 p-3 rounded justify-content-center" style="background-color:white">
     <div class="col-12 text-center">
-      <h3 class="m-3">投稿一覧&nbsp;（<%= @posts.total_count %>件）</h3>
+      <h3 class="m-3">投稿一覧&nbsp;（全<%= @posts.total_count %>件）</h3>
     </div>
-    <%= render 'mypost', posts: @posts , paginate_name: 'mypost'%>
+    <div id="mypost">
+      <%= render 'mypost', posts: @posts , paginate_name: 'mypost'%>
+    </div>
   <% end %>
-    <!--ここまでログインユーザー以外の人のshowページの時-->
 </div>
